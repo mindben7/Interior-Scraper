@@ -1,0 +1,31 @@
+seed_urls:
+  - name: Yabu Pushelberg
+    url: https://yabupushelberg.com
+  - name: Roman and Williams
+    url: https://www.romanandwilliams.com
+  - name: Studio KO
+    url: https://www.studioko.fr
+  - name: Joyce Wang Studio
+    url: https://www.joycewang.com
+  - name: Dezeen Hotels
+    url: https://www.dezeen.com/interiors/hotels/
+  - name: Dezeen Restaurants
+    url: https://www.dezeen.com/interiors/restaurants/
+  - name: Kelly Wearstler
+    url: https://www.kellywearstler.com
+  - name: Rockwell Group
+    url: https://www.rockwellgroup.com
+  - name: AvroKO
+    url: https://www.avroko.com
+  - name: Martin Brudnizki
+    url: https://mbds.com
+  - name: Jean-Louis Deniot
+    url: https://www.deniot.com
+  - name: Studio Munge
+    url: https://www.studiomunge.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 25
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Hospitality_Spaces"

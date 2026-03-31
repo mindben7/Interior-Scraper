@@ -1,0 +1,16 @@
+name: "Top 10 Ultra-Luxury Presets (Starck / Wearstler / Deniot)"
+description: >
+  A targeted preset containing the top 10 global publications that specifically focus on 
+  high-end Hollywood Regency, Maximalist, bespoke, and Avant-Garde luxury architecture.
+
+publications:
+  - url: "https://www.architecturaldigest.com"
+  - url: "https://www.elledecor.com"
+  - url: "https://www.worldofinteriors.com"
+  - url: "https://www.vogue.com.au/vogue-living"
+  - url: "https://www.galeriemagazine.com"
+  - url: "https://luxedaily.com"           # Luxe Interiors + Design
+  - url: "https://www.1stdibs.com/introspective-magazine/" # Introspective (Incredible for curation)
+  - url: "https://interiordesign.net"
+  - url: "https://www.wallpaper.com"
+  - url: "https://www.dwell.com"

@@ -1,0 +1,36 @@
+# Virtual Environment
+venv/
+env/
+.env
+
+# API Keys & Secrets
+*.env*
+secret*
+vault*
+*.vault*
+api_keys*
+
+# Local Data and Logs
+data/
+*.log
+*.sqlite
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store

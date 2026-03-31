@@ -1,0 +1,67 @@
+seed_urls:
+  - name: Architectural Digest
+    url: https://www.architecturaldigest.com/
+  - name: Dezeen
+    url: https://www.dezeen.com/interiors/
+  - name: Elle Decor
+    url: https://www.elledecor.com/
+  - name: Dwell
+    url: https://www.dwell.com/
+  - name: House Beautiful
+    url: https://www.housebeautiful.com/
+  - name: Vogue Living
+    url: https://www.vogue.com.au/vogue-living
+  - name: The World of Interiors
+    url: https://www.worldofinteriors.com/
+  - name: Design Milk
+    url: https://design-milk.com/category/interior-design/
+  - name: Yellowtrace
+    url: https://www.yellowtrace.com.au/category/interiors/
+  - name: Yatzer
+    url: https://www.yatzer.com/interiors
+  - name: Sight Unseen
+    url: https://www.sightunseen.com/category/interiors/
+  - name: The Local Project
+    url: https://thelocalproject.com.au/articles/category/interior-design/
+  - name: Est Living
+    url: https://estliving.com/spaces/
+  - name: Design Boom
+    url: https://www.designboom.com/architecture/interior/
+  - name: Frame Mag
+    url: https://frameweb.com/category/interior
+  - name: Surface Mag
+    url: https://www.surfacemag.com/design/
+  - name: Ignant
+    url: https://www.ignant.com/category/architecture/
+  - name: Leibal
+    url: https://leibal.com/category/architecture/
+  - name: ArchDaily Interiors
+    url: https://www.archdaily.com/category/interior-architecture
+  - name: Wallpaper
+    url: https://www.wallpaper.com/architecture
+  - name: Studio McGee
+    url: https://studio-mcgee.com/
+  - name: Style by Emily Henderson
+    url: https://stylebyemilyhenderson.com/
+  - name: Becki Owens
+    url: https://beckiowens.com/
+  - name: Sarah Sherman Samuel
+    url: https://sarahshermansamuel.com/
+  - name: Cathie Hong
+    url: https://www.cathiehonginteriors.com/
+  - name: Studio Jari
+    url: https://www.studiojari.com/
+  - name: Amber Interiors
+    url: https://amberinteriordesign.com/
+  - name: Marie Flanigan
+    url: https://marieflanigan.com/
+  - name: Heidi Callier
+    url: https://heidicaillierdesign.com/
+  - name: Jake Arnold
+    url: https://jakesarnold.com/
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 40
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Images"

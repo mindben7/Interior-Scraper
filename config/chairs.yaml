@@ -1,0 +1,184 @@
+seed_urls:
+  # ==========================================
+  # THE MEGA LUXURY ARCHIVES & CURATORS
+  # (Massive aggregators of high-end & specialty chairs)
+  # ==========================================
+  - url: "https://www.dwr.com"
+  - url: "https://www.1stdibs.com"
+  - url: "https://www.perigold.com"
+  - url: "https://www.artemest.com"
+  - url: "https://www.chairish.com"
+  - url: "https://www.pamono.com"
+  - url: "https://www.finnishdesignshop.com"
+  - url: "https://www.2modern.com"
+  - url: "https://www.lumens.com"
+  - url: "https://www.ssense.com"
+  - url: "https://www.amara.com"
+  - url: "https://www.luxedecor.com"
+  - url: "https://www.ylighting.com"
+  - url: "https://hbx.com"
+
+  # ==========================================
+  # MASTER HERITAGE & MID-CENTURY MODERN ICONS
+  # ==========================================
+  - url: "https://www.knoll.com"
+  - url: "https://www.hermanmiller.com"
+  - url: "https://www.vitra.com"
+  - url: "https://www.fritzhansen.com"
+  - url: "https://www.carlhansen.com"
+  - url: "https://www.cassina.com"
+  - url: "https://www.artek.fi"
+  - url: "https://www.thonet.de"
+  - url: "https://www.vladimirkagan.com"
+  - url: "https://www.eamesoffice.com"
+  - url: "https://www.pierrepaulin.com"
+
+  # ==========================================
+  # ITALIAN ULTRA-LUXURY DESIGN
+  # ==========================================
+  - url: "https://www.bebitalia.com"
+  - url: "https://www.minotti.com"
+  - url: "https://www.poltronafrau.com"
+  - url: "https://www.flexform.it"
+  - url: "https://www.poliform.it"
+  - url: "https://www.molteni.it"
+  - url: "https://www.porro.com"
+  - url: "https://livingdivani.it"
+  - url: "https://www.zanotta.com"
+  - url: "https://www.cappellini.com"
+  - url: "https://giorgettimilano.it"
+  - url: "https://tacchini.it"
+  - url: "https://arper.com"
+  - url: "https://magisdesign.com"
+  - url: "https://pedrali.it"
+  - url: "https://kristalia.it"
+  - url: "https://desalto.it"
+  - url: "https://www.baxter.it"
+  - url: "https://www.gallottiradice.it"
+  - url: "https://meridiani.it"
+  - url: "https://www.ceccotticollezioni.it"
+  - url: "https://www.edra.com"
+  - url: "https://www.moroso.it"
+  - url: "https://www.gervasoni1882.it"
+  - url: "https://www.lapalma.it"
+  - url: "https://www.fiamitalia.it"
+  - url: "https://www.mdfitalia.com"
+
+  # ==========================================
+  # SCANDINAVIAN & NORDIC BESPOKE
+  # ==========================================
+  - url: "https://muuto.com"
+  - url: "https://hay.dk"
+  - url: "https://normann-copenhagen.com"
+  - url: "https://gubi.com"
+  - url: "https://andtradition.com"
+  - url: "https://fredericia.com"
+  - url: "https://materdesign.com"
+  - url: "https://bylassen.com"
+  - url: "https://www.massproductions.dk"
+  - url: "https://audocph.com"
+  - url: "https://vipp.com"
+  - url: "https://swedese.se"
+  - url: "https://sibast-furniture.com"
+  - url: "https://woud.dk"
+  - url: "https://www.bolia.com"
+  - url: "https://fermliving.com"
+  - url: "https://newworks.dk"
+  - url: "https://www.georgjensen.com"
+
+  # ==========================================
+  # FRENCH & EUROPEAN HAUTE COUTURE
+  # ==========================================
+  - url: "https://www.ligne-roset.com"
+  - url: "https://www.roche-bobois.com"
+  - url: "https://www.desede.ch"
+  - url: "https://www.walterknoll.de"
+  - url: "https://andreuworld.com"
+  - url: "https://www.moissonnier.com"
+  - url: "https://www.gargantuadesign.com"
+  - url: "https://bocadolobo.com"
+  - url: "https://essentialhome.eu"
+  - url: "https://www.vondom.com"
+  - url: "https://tribu.com"
+  - url: "https://kettal.com"
+  - url: "https://manutti.com"
+
+  # ==========================================
+  # AMERICAN HIGH-END & MODERN LUXURY
+  # ==========================================
+  - url: "https://rh.com"
+  - url: "https://www.hollyhunt.com"
+  - url: "https://www.bakerfurniture.com"
+  - url: "https://www.mcguirefurniture.com"
+  - url: "https://www.kravet.com"
+  - url: "https://www.ralphlaurenhome.com"
+  - url: "https://www.bernhardt.com"
+  - url: "https://www.centuryfurniture.com"
+  - url: "https://www.donghia.com"
+  - url: "https://studioliaigre.com"
+  - url: "https://www.gabrielscott.com"
+  - url: "https://lawsonfenning.com"
+  - url: "https://www.rosetarlow.com"
+  - url: "https://www.hollywoodathome.com"
+  - url: "https://www.steelcase.com"
+  - url: "https://www.haworth.com"
+
+  # ==========================================
+  # AVANT-GARDE & COLLECTIBLE ATELIERS
+  # (Super limited-run gallery, rare studio, and specialty chairs)
+  # ==========================================
+  - url: "https://nilufar.com"
+  - url: "https://thefutureperfect.com"
+  - url: "https://carpentersworkshopgallery.com"
+  - url: "https://galeriekreo.com"
+  - url: "https://friedmanbenda.com"
+  - url: "https://hostlerburrows.com"
+  - url: "https://r-and-company.com"
+  - url: "https://rossanaorlandi.com"
+  - url: "https://studiotwentyseven.com"
+  - url: "https://indiamahdavi.fr"
+  - url: "https://www.promemoria.com"
+  - url: "https://www.fendicasa.com"
+  - url: "https://www.visionnaire-home.com"
+  - url: "https://galeriehalf.com"
+
+  # ==========================================
+  # ACCESSIBLE LUXURY & CONTEMPORARY RETAIL
+  # (High-end mass market and premium accessible design)
+  # ==========================================
+  - url: "https://www.sohohome.com"
+  - url: "https://www.arhaus.com"
+  - url: "https://www.cb2.com"
+  - url: "https://www.serenaandlily.com"
+  - url: "https://www.jonathanadler.com"
+  - url: "https://www.anthropologie.com"
+  - url: "https://www.roveconcepts.com"
+  - url: "https://www.castlery.com"
+  - url: "https://www.luluandgeorgia.com"
+  - url: "https://www.sixpenny.com"
+  - url: "https://www.interiordefine.com"
+  - url: "https://www.maidenhome.com"
+  - url: "https://www.williams-sonoma.com/home"
+  - url: "https://www.frontgate.com"
+  - url: "https://www.oka.com"
+  - url: "https://www.neimanmarcus.com"
+  - url: "https://www.horchow.com"
+
+  # ==========================================
+  # MODERN ITALIAN ESSENTIALS & OUTDOOR LUXURY
+  # ==========================================
+  - url: "https://www.kartell.com"
+  - url: "https://www.calligaris.com"
+  - url: "https://www.natuzzi.com"
+  - url: "https://www.cattelanitalia.com"
+  - url: "https://www.bontempi.it"
+  - url: "https://www.midj.com"
+  - url: "https://www.connubia.com"
+  - url: "https://www.fermob.com"
+  - url: "https://www.kettal.com"
+  - url: "https://alessi.com"
+
+settings:
+  min_width: 800
+  min_height: 800
+  target_images_per_pub: 500

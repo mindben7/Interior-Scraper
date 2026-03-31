@@ -1,0 +1,244 @@
+seed_urls:
+  # -- GLOBAL PUBLICATIONS & PORTALS --
+  - name: Architectural Digest
+    url: https://www.architecturaldigest.com/
+  - name: AD France
+    url: https://www.admagazine.fr/
+  - name: AD Italia
+    url: https://www.ad-italia.it/
+  - name: AD Spain
+    url: https://www.revistaad.es/
+  - name: AD Germany
+    url: https://www.ad-magazin.de/
+  - name: Dezeen
+    url: https://www.dezeen.com/interiors/
+  - name: Elle Decor
+    url: https://www.elledecor.com/
+  - name: Elle Decor Italia
+    url: https://www.elledecor.com/it/
+  - name: Dwell
+    url: https://www.dwell.com/
+  - name: House Beautiful
+    url: https://www.housebeautiful.com/
+  - name: Vogue Living
+    url: https://www.vogue.com.au/vogue-living
+  - name: Belle Magazine
+    url: https://www.homestolove.com.au/belle/
+  - name: Real Living
+    url: https://www.homestolove.com.au/real-living/
+  - name: Habitus Living
+    url: https://www.habitusliving.com/
+  - name: The World of Interiors
+    url: https://www.worldofinteriors.com/
+  - name: Design Milk
+    url: https://design-milk.com/category/interior-design/
+  - name: Yellowtrace
+    url: https://www.yellowtrace.com.au/category/interiors/
+  - name: Yatzer
+    url: https://www.yatzer.com/interiors
+  - name: Sight Unseen
+    url: https://www.sightunseen.com/category/interiors/
+  - name: The Local Project
+    url: https://thelocalproject.com.au/articles/category/interior-design/
+  - name: Est Living
+    url: https://estliving.com/spaces/
+  - name: Design Anthology
+    url: https://designanthologymag.com/
+  - name: Design Boom
+    url: https://www.designboom.com/architecture/interior/
+  - name: Frame Mag
+    url: https://frameweb.com/category/interior
+  - name: Surface Mag
+    url: https://www.surfacemag.com/design/
+  - name: Ignant
+    url: https://www.ignant.com/category/architecture/
+  - name: Leibal
+    url: https://leibal.com/category/architecture/
+  - name: ArchDaily Interiors
+    url: https://www.archdaily.com/category/interior-architecture
+  - name: Wallpaper
+    url: https://www.wallpaper.com/architecture
+  - name: Divisare
+    url: https://divisare.com/interior-design
+  - name: Minimalissimo
+    url: https://minimalissimo.com/architecture
+  - name: Architizer
+    url: https://architizer.com/projects/
+  - name: Archello
+    url: https://archello.com/projects
+  - name: Afasia Archzine
+    url: https://afasiaarchzine.com/
+
+  # -- MINIMALIST & ARCHITECTURAL MASTERS --
+  - name: Vincent Van Duysen
+    url: https://vincentvanduysen.com/
+  - name: John Pawson
+    url: https://www.johnpawson.com/
+  - name: Peter Zumthor
+    url: https://zumthor.org/
+  - name: Tadao Ando
+    url: https://www.tadao-ando.com/
+  - name: Kengo Kuma
+    url: https://kkaa.co.jp/
+  - name: Sou Fujimoto
+    url: https://www.sou-fujimoto.net/
+  - name: Shigeru Ban
+    url: https://shigerubanarchitects.com/
+  - name: SANAA
+    url: https://www.sanaa.co.jp/
+  - name: Nendo
+    url: https://www.nendo.jp/
+  - name: Norm Architects
+    url: https://normcph.com/
+  - name: Herzog de Meuron
+    url: https://www.herzogdemeuron.com/
+  - name: OMA
+    url: https://www.oma.com/projects
+  - name: Snohetta
+    url: https://snohetta.com/projects
+  - name: BIG Architects
+    url: https://big.dk/
+  - name: David Chipperfield
+    url: https://davidchipperfield.com/
+  - name: Foster and Partners
+    url: https://www.fosterandpartners.com/
+  - name: Zaha Hadid Architects
+    url: https://www.zaha-hadid.com/
+  - name: Studio Gang
+    url: https://studiogang.com/
+
+  # -- HIGH-END RESIDENTIAL & EDITORIAL STUDIOS --
+  - name: Axel Vervoordt
+    url: https://www.axel-vervoordt.com/
+  - name: Joseph Dirand
+    url: https://www.josephdirand.com/
+  - name: Pierre Yovanovitch
+    url: https://www.pierreyovanovitch.com/
+  - name: Rose Uniacke
+    url: https://www.roseuniacke.com/
+  - name: Ilse Crawford
+    url: https://www.studioilse.com/
+  - name: Christian Liaigre
+    url: https://www.studioliaigre.com/
+  - name: Jean-Louis Deniot
+    url: https://www.deniot.com/
+  - name: India Mahdavi
+    url: https://india-mahdavi.com/
+  - name: Patricia Urquiola
+    url: https://patriciaurquiola.com/
+  - name: Dimore Studio
+    url: https://dimorestudio.eu/
+  - name: Peter Marino
+    url: https://petermarinoarchitect.com/
+  - name: Kelly Hoppen
+    url: https://kellyhoppeninteriors.com/
+  - name: David Collins Studio
+    url: https://davidcollins.studio/
+  - name: Tara Bernerd
+    url: https://tarabernerd.com/
+  - name: Fiona Barratt
+    url: https://fionabarrattinteriors.com/
+  - name: Martin Kemp
+    url: https://martinkempdesign.com/
+  - name: Studio McGee
+    url: https://studio-mcgee.com/
+  - name: Style by Emily Henderson
+    url: https://stylebyemilyhenderson.com/
+  - name: Becki Owens
+    url: https://beckiowens.com/
+  - name: Sarah Sherman Samuel
+    url: https://sarahshermansamuel.com/
+  - name: Cathie Hong
+    url: https://www.cathiehonginteriors.com/
+  - name: Studio Jari
+    url: https://www.studiojari.com/
+  - name: Amber Interiors
+    url: https://amberinteriordesign.com/
+  - name: Marie Flanigan
+    url: https://marieflanigan.com/
+  - name: Heidi Callier
+    url: https://heidicaillierdesign.com/
+  - name: Jake Arnold
+    url: https://jakesarnold.com/
+  - name: Athena Calderone
+    url: https://athenacalderone.com/
+  - name: Nate Berkus
+    url: https://nateberkus.com/
+  - name: Jeremiah Brent
+    url: https://jeremiahbrent.com/
+  - name: Colin King
+    url: https://colinking.com/
+  - name: Victoria Hagan
+    url: https://victoriahagan.com/
+  - name: Michael S Smith
+    url: https://michaelsmithinc.com/
+  - name: Mark D Sikes
+    url: https://markdsikes.com/
+  - name: Miles Redd
+    url: https://milesredd.com/
+  - name: Martyn Lawrence Bullard
+    url: https://martynlawrencebullard.com/
+  - name: Celerie Kemble
+    url: https://kembleinteriors.com/
+  - name: Bunny Williams
+    url: https://bunnywilliams.com/
+  - name: Alexa Hampton
+    url: https://markhampton.com/
+  - name: Suzanne Kasler
+    url: https://suzannekasler.com/
+  - name: Steven Gambrel
+    url: https://srgambrel.com/
+  - name: Timothy Corrigan
+    url: https://timothy-corrigan.com/
+
+  # -- MODERN COASTAL & RUSTIC ARCHITECTURE --
+  - name: Marmol Radziner
+    url: https://marmol-radziner.com/
+  - name: Olson Kundig
+    url: https://olsonkundig.com/
+  - name: Bates Masi
+    url: https://batesmasi.com/
+  - name: Feldman Architecture
+    url: https://feldmanarchitecture.com/
+  - name: Lake Flato
+    url: https://www.lakeflato.com/
+
+  # -- ELITE HOSPITALITY & COMMERCIAL --
+  - name: Yabu Pushelberg
+    url: https://yabupushelberg.com/
+  - name: Roman and Williams
+    url: https://www.romanandwilliams.com/
+  - name: Studio KO
+    url: https://www.studioko.fr/
+  - name: Joyce Wang Studio
+    url: https://www.joycewang.com/
+  - name: Kelly Wearstler
+    url: https://www.kellywearstler.com/
+  - name: Rockwell Group
+    url: https://www.rockwellgroup.com/
+  - name: AvroKO
+    url: https://www.avroko.com/
+  - name: Martin Brudnizki
+    url: https://mbds.com/
+  - name: Jean-Louis Deniot
+    url: https://www.deniot.com/
+  - name: Studio Munge
+    url: https://www.studiomunge.com/
+  - name: Meyer Davis
+    url: https://meyerdavis.com/
+  - name: Gilles Boissier
+    url: https://gillesetboissier.com/
+  - name: Gensler Interiors
+    url: https://www.gensler.com/projects
+  - name: Woods Bagot
+    url: https://www.woodsbagot.com/
+  - name: Perkins Will
+    url: https://perkinswill.com/
+  - name: SOM Interiors
+    url: https://www.som.com/
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 50
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Images"

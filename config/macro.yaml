@@ -1,0 +1,36 @@
+seed_urls:
+  # Textiles & Fabrics
+  - name: Kvadrat
+    url: https://www.kvadrat.dk/en
+  - name: Dedar Milano
+    url: https://dedar.com/
+  - name: Pierre Frey
+    url: https://www.pierrefrey.com/
+  - name: Maharam
+    url: https://www.maharam.com/
+    
+  # Natural Stone & Tile
+  - name: Salvatori
+    url: https://www.salvatoriofficial.com/
+  - name: Ann Sacks
+    url: https://www.annsacks.com/
+  - name: Cle Tile
+    url: https://www.cletile.com/
+  - name: Mutina
+    url: https://www.mutina.it/en/
+    
+  # Hardware & Fixtures
+  - name: Waterworks
+    url: https://www.waterworks.com/
+  - name: Armac Martin
+    url: https://www.armacmartin.co.uk/
+  - name: Buster and Punch
+    url: https://www.busterandpunch.com/
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 200
+  
+  # Crucially isolate the macro downloads into their own directory
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Macro_Textures"

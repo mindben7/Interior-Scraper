@@ -1,0 +1,20 @@
+seed_urls:
+  - url: "https://www.roseuniacke.com"
+  - url: "https://colinking.com"
+  - url: "https://www.vincentvanduysen.com"
+  - url: "https://josephdirand.com"
+  - url: "https://www.athenacalderone.com"
+  - url: "https://www.axel-vervoordt.com"
+  - url: "https://normarchitects.com"
+  - url: "https://bandadesign.com"
+  - url: "https://framacph.com"
+  - url: "https://studio-olivergustav.com"
+  - url: "https://pierreyaovanovitch.com"
+  - url: "https://stephaniecoutas.com"
+  - url: "https://kellywearstler.com"
+  - url: "https://www.giancarloballe.com"
+  - url: "https://www.studiodiaz.com"
+settings:
+  min_width: 800
+  min_height: 800
+  target_images_per_pub: 200

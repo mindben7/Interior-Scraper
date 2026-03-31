@@ -1,0 +1,27 @@
+seed_urls:
+  - name: Baccarat
+    url: https://www.baccarat.com
+  - name: Barovier and Toso
+    url: https://www.barovier.com
+  - name: Saint-Louis
+    url: https://www.saint-louis.com
+  - name: Vaughan Designs
+    url: https://www.vaughandesigns.com
+  - name: Visual Comfort
+    url: https://www.visualcomfort.com
+  - name: Ochre
+    url: https://www.ochre.net
+  - name: Hector Finch
+    url: https://www.hectorfinch.com
+  - name: Charles Paris
+    url: https://www.charles.fr
+  - name: Porta Romana
+    url: https://www.portaromana.com
+  - name: Lasvit
+    url: https://www.lasvit.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"

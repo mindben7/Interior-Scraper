@@ -1,0 +1,71 @@
+# ==============================================================================
+# NEURAL EXTRACTION TARGETS: "COCAINE DECO" (1980s MIAMI SURREALISM)
+# ==============================================================================
+# Aesthetic Signatures: Glass Blocks, Neon Teal/Pink, Chrome, White Leather, 
+# Sunken Living Rooms, Bioluminescent/Liquid vaporwave manipulation points.
+
+categories:
+  - cocaine-deco
+  - memphis-group
+  - 80s-vaporwave
+  - miami-vice-architectural
+
+targets:
+  # ---------------------------------------------------------
+  # 1. HIGH-DENSITY ARE.NA CURATION BOARDS (Visual Priority)
+  # ---------------------------------------------------------
+  arena_boards:
+    - type: "are.na"
+      urls:
+        - "https://www.are.na/search/1980s%20interior"
+        - "https://www.are.na/search/memphis%20milano"
+        - "https://www.are.na/search/miami%20vice%20aesthetic"
+        - "https://www.are.na/search/glass%20block%20interior"
+      depth_limit: 500
+
+  # ---------------------------------------------------------
+  # 2. VINTAGE EDITORIAL / PDF ARCHIVES (Highest Fidelity)
+  # ---------------------------------------------------------
+  pdf_archives:
+    - type: "internet_archive"
+      queries:
+        - "Architectural Digest 1980"
+        - "Architectural Digest 1981"
+        - "Architectural Digest 1982"
+        - "Architectural Digest 1986"
+        - "Florida Architecture Magazine 1980s"
+        - "The Home: Exciting New Designs For Today's Lifestyles 1986"
+      books:
+        - "https://archive.org/details/memphis-objects-furniture-patterns-1986"
+        
+  # ---------------------------------------------------------
+  # 3. TUMBLR VAPORWAVE / VINTAGE ARCHITECTURE BLOGS
+  # ---------------------------------------------------------
+  tumblr_blogs:
+    - type: "tumblr_scrape"
+      urls:
+        - "https://80sdesign.tumblr.com/"
+        - "https://miamivice-aesthetic.tumblr.com/"
+        - "https://cocainedecor.tumblr.com/"
+        - "https://vintage-interiors-80s.tumblr.com/"
+      tag_filters: ["glass block", "neon", "living room", "chrome"]
+
+  # ---------------------------------------------------------
+  # 4. SOCIAL MOODBOARDS (Pinterest)
+  # ---------------------------------------------------------
+  pinterest_scrape:
+    - type: "pinterest"
+      queries:
+        - "1980s interior design glass block"
+        - "memphis milano interior"
+        - "arquitectonica miami 1980s interior"
+        - "80s sunken living room"
+
+  # ---------------------------------------------------------
+  # 5. RETRO REAL ESTATE LISTINGS
+  # ---------------------------------------------------------
+  real_estate_archives:
+    - type: "zillow_historical_proxy"
+      keywords: ["built in 1980", "built in 1981", "built in 1982"]
+      locations: ["Brickell, Miami, FL", "Coconut Grove, FL", "South Beach, FL"]
+      vision_filter_must_contain: "glass blocks OR neon OR interior chrome"

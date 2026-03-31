@@ -1,0 +1,27 @@
+seed_urls:
+  - name: Flos
+    url: https://flos.com
+  - name: Viabizzuno
+    url: https://www.viabizzuno.com
+  - name: Delta Light
+    url: https://www.deltalight.com
+  - name: Erco
+    url: https://www.erco.com
+  - name: XAL
+    url: https://www.xal.com
+  - name: Iguzzini
+    url: https://www.iguzzini.com
+  - name: Kreon
+    url: https://www.kreon.com
+  - name: Modular Lighting
+    url: https://www.supermodular.com
+  - name: Lucifer Lighting
+    url: https://www.luciferlighting.com
+  - name: Simes
+    url: https://www.simes.it
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"

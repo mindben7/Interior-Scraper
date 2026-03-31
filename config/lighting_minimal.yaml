@@ -1,0 +1,27 @@
+seed_urls:
+  - name: Vibia
+    url: https://www.vibia.com
+  - name: Nemo Lighting
+    url: https://nemolighting.com
+  - name: DCW Editions
+    url: https://dcwe.fr
+  - name: Tom Dixon
+    url: https://www.tomdixon.net
+  - name: Wastberg
+    url: https://www.wastberg.com
+  - name: Astep
+    url: https://astep.design
+  - name: Luceplan
+    url: https://www.luceplan.com
+  - name: Pablo Designs
+    url: https://pablodesigns.com
+  - name: Menu Audo
+    url: https://audocph.com
+  - name: Marset
+    url: https://www.marset.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"

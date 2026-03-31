@@ -1,0 +1,15 @@
+config:
+  global_limit: 15000
+  timeout_ms: 25000
+
+settings:
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Images"
+  target_images_per_pub: 5000
+  
+scraper:
+  min_width: 800
+  min_height: 800
+
+publications:
+  - name: FireclayTile
+    url: https://www.fireclaytile.com/

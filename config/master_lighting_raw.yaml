@@ -1,0 +1,557 @@
+seed_urls:
+  # GLOBAL ELITE ARCHITECTURAL LIGHTING & HIGH-END FURNITURE
+  # (The world's absolute best lighting and furniture design houses. 
+  # Selected specifically for their massive editorial photography budgets.)
+  # ==========================================
+  - url: "https://flos.com"
+  - url: "https://www.artemide.com"
+  - url: "https://www.foscarini.com"
+  - url: "https://www.vibia.com"
+  - url: "https://www.louispoulsen.com"
+  - url: "https://www.tomdixon.net"
+  - url: "https://bocci.com"
+  - url: "https://apparatusstudio.com"
+  - url: "https://www.rollandhill.com"
+  - url: "https://alliedmaker.com"
+  - url: "https://lindseyadelman.com"
+  - url: "https://leebroom.com"
+  - url: "https://www.nemolighting.com"
+  - url: "https://www.ingo-maurer.com"
+  - url: "https://www.moooi.com"
+  - url: "https://gubi.com"
+  - url: "https://wastberg.com"
+  - url: "https://www.viabizzuno.com"
+  - url: "https://www.davidegroppi.com"
+  - url: "https://www.deltalight.com"
+  - url: "https://www.xal.com"
+  - url: "https://www.iguzzini.com"
+  - url: "https://www.erco.com"
+  - url: "https://www.luceplan.com"
+  - url: "https://www.kundalini.it"
+  - url: "https://www.oluce.com"
+  - url: "https://www.santacole.com"
+  - url: "https://www.bover.es"
+  - url: "https://www.marset.com"
+  - url: "https://lzf-lamps.com"
+  - url: "https://www.vistosi.com"
+  - url: "https://www.barovier.com"
+  - url: "https://www.terzani.com"
+  - url: "https://www.catellaniesmith.com"
+  - url: "https://www.slamp.com"
+  - url: "https://www.axolight.it"
+  - url: "https://www.fabbian.com"
+  - url: "https://www.karmanitalia.it"
+  - url: "https://www.masierogroup.com"
+  - url: "https://zafferanoitalia.com"
+  - url: "https://www.jielde.com"
+  - url: "https://dcweditions.fr"
+  - url: "https://studio.sammode.com"
+  - url: "https://www.sergemouille.com"
+  - url: "https://kalmarwerkstatten.com"
+  - url: "https://wokalamps.com"
+  - url: "https://www.preciosalighting.com"
+  - url: "https://www.lasvit.com"
+  - url: "https://www.brokis.cz"
+  - url: "https://www.bomma.cz"
+  - url: "https://www.sklo.com"
+  - url: "https://otylight.com"
+  - url: "https://www.linealight.com"
+  - url: "https://panzeri.it"
+  - url: "https://www.lodes.com"
+  - url: "https://contardi-italia.com"
+  - url: "https://pentalight.com"
+  - url: "https://www.tooy.it"
+  - url: "https://martinelliluce.it"
+  - url: "https://www.lumina.it"
+  - url: "https://www.cinienils.com"
+  - url: "https://www.fontanaarte.com"
+  - url: "https://www.stilnovo.com"
+  - url: "https://www.prandina.it"
+  - url: "https://www.modoluce.com"
+  - url: "https://leucos.com"
+  - url: "https://www.canginietucci.com"
+  - url: "https://www.sectodesign.fi"
+  - url: "https://muuto.com"
+  - url: "https://fermliving.com"
+  - url: "https://www.rubn.com"
+  - url: "https://www.orsjo.com"
+  - url: "https://zero.se"
+  - url: "https://pholc.se"
+  - url: "https://nuura.com"
+  - url: "https://materdesign.com"
+  - url: "https://northern.no"
+  - url: "https://www.originalbtc.com"
+  - url: "https://www.anglepoise.com"
+  - url: "https://www.talastudios.com"
+  - url: "https://ctolighting.co.uk"
+  - url: "https://bertfrank.co.uk"
+  - url: "https://www.busterandpunch.com"
+  - url: "https://portaromana.com"
+  - url: "https://ochre.net"
+  - url: "https://www.tigermothlighting.com"
+  - url: "https://www.rothschildbickers.com"
+  - url: "https://haberdashery.com"
+  - url: "https://resident.co.nz"
+  - url: "https://www.davidtrubridge.com"
+  - url: "https://articololighting.com"
+  - url: "https://christopherboots.com"
+  - url: "https://rakumba.com.au"
+  - url: "https://rossgardam.com.au"
+  - url: "https://volkerhaug.com"
+  - url: "https://annacharlesworth.com.au"
+  - url: "https://rbw.com"
+  - url: "https://www.brendanravenhill.com"
+  - url: "https://cedarandmoss.com"
+  - url: "https://www.schoolhouse.com"
+  - url: "https://www.rejuvenation.com"
+  - url: "https://www.visualcomfort.com"
+  - url: "https://workstead.com"
+  - url: "https://www.incommonwith.com"
+  - url: "https://trueing.co"
+  - url: "https://ladiesandgentlemenstudio.com"
+  - url: "https://annakarlin.com"
+  - url: "https://pelledesigns.com"
+  - url: "https://becbrittain.com"
+  - url: "https://rosieli.com"
+  - url: "https://stickbulb.com"
+  - url: "https://www.juniper-design.com"
+  - url: "https://www.lukelampco.com"
+  - url: "https://matthewmccormick.ca"
+  - url: "https://lambertetfils.com"
+  - url: "https://d-armes.ca"
+  - url: "https://andlight.ca"
+  - url: "https://archilume.com"
+  - url: "https://visoinc.com"
+  - url: "https://castrolighting.com"
+  - url: "https://serip.com.pt"
+  - url: "https://bocadolobo.com"
+  - url: "https://delightfull.eu"
+  - url: "https://luxxu.net"
+  - url: "https://www.lladro.com"
+  - url: "https://www.moissonnier.com"
+  - url: "https://www.hollywoodathome.com"
+  - url: "https://gargantuadesign.com"
+  - url: "https://hollowaysofludlow.com"
+  - url: "https://davidhuntlighting.co.uk"
+  - url: "https://heathfield.co.uk"
+  - url: "https://chelsom.co.uk"
+  - url: "https://franklite.co.uk"
+  - url: "https://astrolighting.com"
+  - url: "https://lucis.eu"
+  - url: "https://fates.cz"
+  - url: "https://bylassen.com"
+  - url: "https://frandsen.com"
+  - url: "https://housedoctordesign.com"
+  - url: "https://vipp.com"
+  - url: "https://warmnordic.com"
+  - url: "https://leklint.com"
+  - url: "https://louiseroe.com"
+  - url: "https://pandul.dk"
+  - url: "https://woud.dk"
+  - url: "https://newworks.dk"
+  - url: "https://georgjensen.com"
+  - url: "https://ayilluminate.com"
+  - url: "https://carpyen.com"
+  - url: "https://estiluz.com"
+  - url: "https://faro.es"
+  - url: "https://milan-iluminacion.com"
+  - url: "https://vondom.com"
+  - url: "https://b.lux.com"
+  - url: "https://grupoblux.com"
+  - url: "https://luziferlamps.com"
+  - url: "https://arturo-alvarez.com"
+  - url: "https://a-emotional-light.com"
+  - url: "https://pallucco.com"
+  - url: "https://venicem.com"
+  - url: "https://henge07.com"
+  - url: "https://giorgettimilano.it"
+  - url: "https://www.cappellini.com"
+  - url: "https://zanotta.com"
+  - url: "https://arflex.it"
+  - url: "https://tacchini.it"
+  - url: "https://gallottiradice.it"
+  - url: "https://meridiani.it"
+  - url: "https://porada.it"
+  - url: "https://visionnaire-home.com"
+  - url: "https://fendicasa.com"
+  - url: "https://baxter.it"
+  - url: "https://ceccotticollezioni.it"
+  - url: "https://poltronafrau.com"
+  - url: "https://matteograssi.it"
+  - url: "https://glasitalia.com"
+  - url: "https://fiamitalia.it"
+  - url: "https://edra.com"
+  - url: "https://mdfitalia.com"
+  - url: "https://kettal.com"
+  - url: "https://gandiablasco.com"
+  - url: "https://tribu.com"
+  - url: "https://manutti.com"
+  - url: "https://exteta.it"
+  - url: "https://rodaonline.com"
+  - url: "https://paolalenti.it"
+  - url: "https://desalto.it"
+  - url: "https://lapalma.it"
+  - url: "https://kristalia.it"
+  - url: "https://arper.com"
+  - url: "https://magisdesign.com"
+  - url: "https://mattiazzi.eu"
+  - url: "https://plank.it"
+  - url: "https://pedrali.it"
+  - url: "https://fastspa.com"
+  - url: "https://zanottasas.it"
+  - url: "https://crassevig.com"
+  - url: "https://billiani.it"
+  - url: "https://moroso.it"
+  - url: "https://andreuworld.com"
+
+
+  # 1STDIBS - GLOBAL EXCLUSIVE LIGHTING CATALOG
+  # ==========================================
+  # MASTER DIRECTORY
+  - url: "https://www.1stdibs.com/furniture/lighting/"
+  # MEGA-CURATED CHANDELIERS & PENDANTS
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/murano-glass/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/mid-century-modern/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/art-deco/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/industrial/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/contemporary/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/italian/"
+  - url: "https://www.1stdibs.com/furniture/lighting/chandeliers-pendant-lights/brass/"
+  # ARCHITECTURAL SCONCES & WALL FIXTURES
+  - url: "https://www.1stdibs.com/furniture/lighting/sconces-wall-lights/"
+  - url: "https://www.1stdibs.com/furniture/lighting/sconces-wall-lights/mid-century-modern/"
+  - url: "https://www.1stdibs.com/furniture/lighting/sconces-wall-lights/art-deco/"
+  - url: "https://www.1stdibs.com/furniture/lighting/sconces-wall-lights/contemporary/"
+  - url: "https://www.1stdibs.com/furniture/lighting/sconces-wall-lights/italian/"
+  - url: "https://www.1stdibs.com/furniture/lighting/sconces-wall-lights/brass/"
+  # TABLE & DESK LIGHTING
+  - url: "https://www.1stdibs.com/furniture/lighting/table-lamps/"
+  - url: "https://www.1stdibs.com/furniture/lighting/table-lamps/mid-century-modern/"
+  - url: "https://www.1stdibs.com/furniture/lighting/table-lamps/art-deco/"
+  - url: "https://www.1stdibs.com/furniture/lighting/table-lamps/italian/"
+  # FLOOR LAMPS & FREESTANDING FIXTURES
+  - url: "https://www.1stdibs.com/furniture/lighting/floor-lamps/"
+  - url: "https://www.1stdibs.com/furniture/lighting/floor-lamps/mid-century-modern/"
+  - url: "https://www.1stdibs.com/furniture/lighting/floor-lamps/art-deco/"
+  - url: "https://www.1stdibs.com/furniture/lighting/floor-lamps/italian/"
+  # ARCHITECTURAL FLUSH MOUNTS
+  - url: "https://www.1stdibs.com/furniture/lighting/flush-mounts/"
+  - url: "https://www.1stdibs.com/furniture/lighting/flush-mounts/mid-century-modern/"
+  - url: "https://www.1stdibs.com/furniture/lighting/flush-mounts/art-deco/"
+  # EXTERIOR LANTERNS & SCONCES
+  - url: "https://www.1stdibs.com/furniture/lighting/exterior-lighting/"
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"
+seed_urls:
+  - name: Flos
+    url: https://flos.com
+  - name: Viabizzuno
+    url: https://www.viabizzuno.com
+  - name: Delta Light
+    url: https://www.deltalight.com
+  - name: Erco
+    url: https://www.erco.com
+  - name: XAL
+    url: https://www.xal.com
+  - name: Iguzzini
+    url: https://www.iguzzini.com
+  - name: Kreon
+    url: https://www.kreon.com
+  - name: Modular Lighting
+    url: https://www.supermodular.com
+  - name: Lucifer Lighting
+    url: https://www.luciferlighting.com
+  - name: Simes
+    url: https://www.simes.it
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"
+seed_urls:
+  - name: Apparatus Studio
+    url: https://apparatusstudio.com
+  - name: Lindsey Adelman
+    url: https://lindseyadelman.com
+  - name: Bocci
+    url: https://bocci.com
+  - name: Gabriel Scott
+    url: https://gabriel-scott.com
+  - name: Roll and Hill
+    url: https://www.rollandhill.com
+  - name: Lee Broom
+    url: https://www.leebroom.com
+  - name: Allied Maker
+    url: https://www.alliedmaker.com
+  - name: CTO Lighting
+    url: https://ctolighting.co.uk
+  - name: In Common With
+    url: https://www.incommonwith.com
+  - name: Paul Matter
+    url: https://paulmatter.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"
+seed_urls:
+  - name: Baccarat
+    url: https://www.baccarat.com
+  - name: Barovier and Toso
+    url: https://www.barovier.com
+  - name: Saint-Louis
+    url: https://www.saint-louis.com
+  - name: Vaughan Designs
+    url: https://www.vaughandesigns.com
+  - name: Visual Comfort
+    url: https://www.visualcomfort.com
+  - name: Ochre
+    url: https://www.ochre.net
+  - name: Hector Finch
+    url: https://www.hectorfinch.com
+  - name: Charles Paris
+    url: https://www.charles.fr
+  - name: Porta Romana
+    url: https://www.portaromana.com
+  - name: Lasvit
+    url: https://www.lasvit.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"
+seed_urls:
+  - name: Vibia
+    url: https://www.vibia.com
+  - name: Nemo Lighting
+    url: https://nemolighting.com
+  - name: DCW Editions
+    url: https://dcwe.fr
+  - name: Tom Dixon
+    url: https://www.tomdixon.net
+  - name: Wastberg
+    url: https://www.wastberg.com
+  - name: Astep
+    url: https://astep.design
+  - name: Luceplan
+    url: https://www.luceplan.com
+  - name: Pablo Designs
+    url: https://pablodesigns.com
+  - name: Menu Audo
+    url: https://audocph.com
+  - name: Marset
+    url: https://www.marset.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"
+instagram_targets:
+  # ==========================================
+  # TOP-TIER FLORIDA CUSTOM LIGHTING DESIGNERS
+  # ==========================================
+  florida_small_custom:
+    - handle: "finearthandcraftedlighting"
+    - handle: "roccoborghesechandeliers"
+    - handle: "armaxmiami"
+    - handle: "impactlightinginc"
+    - handle: "galileelighting"
+    - handle: "illuminatedlightingdesign"
+    - handle: "hevilite"
+    - handle: "customlightingofamerica"
+    - handle: "studiom_lighting"
+    - handle: "bpeterson_palmbeach"
+    - handle: "luxure_lifestyle_naples"
+    - handle: "sps.lighting"
+    - handle: "triplesevenhome"
+    - handle: "luminaire"
+    - handle: "tampabaylighting"
+    - handle: "palmbeachlightingdesign"
+    - handle: "sescolighting"
+    - handle: "pleasantlightscapes"
+    - handle: "illuminataglass"
+    - handle: "zlitelighting"
+    - handle: "miamilightingdesign"
+    - handle: "clidesign"
+    - handle: "uplightgroup"
+    - handle: "southfloridalightingdesign"
+    - handle: "sanssoucilighting"
+    - handle: "linearlightingmiami"
+    - handle: "luveralighting"
+    - handle: "lightswitchmiami"
+    - handle: "eventfactormiami"
+
+  # ==========================================
+  # THE MASSIVE GLOBAL ELITE LIST
+  # ==========================================
+  global_elite:
+    - handle: "flos"
+    - handle: "artemide_lighting"
+    - handle: "foscarinilamps"
+    - handle: "vibialight"
+    - handle: "tomdixonstudio"
+    - handle: "bocci"
+    - handle: "APPARATUSSTUDIO"
+    - handle: "rollandhill"
+    - handle: "alliedmaker"
+    - handle: "lindseyadelman"
+    - handle: "leebroom"
+    - handle: "nemolighting"
+    - handle: "ingomaurer_official"
+    - handle: "moooi"
+    - handle: "gubiofficial"
+    - handle: "wastbergplus"
+    - handle: "davidegroppi"
+    - handle: "xal_lighting"
+    - handle: "iguzzini"
+    - handle: "ercolighting"
+    - handle: "luceplan_lighting"
+    - handle: "kdln_lighting"
+    - handle: "o_luce"
+    - handle: "santacole"
+    - handle: "boverbarcelona"
+    - handle: "marsetbcn"
+    - handle: "lzflamps"
+    - handle: "vistosi_lighting"
+    - handle: "baroviertoso"
+    - handle: "terzanilight"
+    - handle: "catellanismith"
+    - handle: "slamp_official"
+    - handle: "axolight"
+    - handle: "fabbianlighting"
+    - handle: "karmanitalia"
+    - handle: "masierolights"
+    - handle: "zafferanoitaliaofficial"
+    - handle: "jielde1950"
+    - handle: "totimodesign"
+    - handle: "wokalampsvienna"
+    - handle: "preciosalighting"
+    - handle: "LasvitDesign"
+    - handle: "brokislighting"
+    - handle: "bomma_cz"
+    - handle: "sklostudio"
+    - handle: "otylight"
+    - handle: "linealightgroup"
+    - handle: "panzeri1947"
+    - handle: "lodesbrand"
+    - handle: "contardi_lighting"
+    - handle: "tooy_official"
+    - handle: "martinelli_luce"
+    - handle: "cinienils"
+    - handle: "prandina_lighting"
+    - handle: "modo_luce"
+    - handle: "leucos_official"
+    - handle: "canginietucci_italy"
+    - handle: "sectodesign"
+    - handle: "muutodesign"
+    - handle: "rubnlighting"
+    - handle: "orsjo_belysning"
+    - handle: "zerolighting"
+    - handle: "pholcofficial"
+    - handle: "nuuralighting"
+    - handle: "materdesign"
+    - handle: "northern.no"
+    - handle: "originalbtc"
+    - handle: "anglepoise"
+    - handle: "talastudiosnyc"
+    - handle: "ctolighting"
+    - handle: "bertfrankltd"
+    - handle: "busterandpunch"
+    - handle: "portaromanauk"
+    - handle: "ochreochregallery"
+    - handle: "tigermoth_lighting"
+    - handle: "rothschildbickers"
+    - handle: "residentnz"
+    - handle: "davidtrubridge"
+    - handle: "articolostudios"
+    - handle: "rakumba_lighting"
+    - handle: "rossgardam"
+    - handle: "annacharlesworthmetal"
+    - handle: "cedarandmoss"
+    - handle: "schoolhouse"
+    - handle: "incommonwith"
+    - handle: "trueing_studio"
+    - handle: "ladiesandgentlemenstudio"
+    - handle: "pelle______"
+    - handle: "bec_brittain"
+    - handle: "rosielistudio"
+    - handle: "stickbulb"
+    - handle: "juniperdesigngroup"
+    - handle: "lukelampco"
+    - handle: "matthew.mccormick"
+    - handle: "lambertetfils"
+    - handle: "and_light"
+    - handle: "archilume"
+    - handle: "visolighting"
+    - handle: "castrolighting"
+    - handle: "delightfulll"
+    - handle: "luxxumoderndesignliving"
+    - handle: "moissonnier1885"
+    - handle: "hollywoodathome"
+    - handle: "hollowaysofludlow"
+    - handle: "davidhuntlighting"
+    - handle: "heathfieldandco"
+    - handle: "chelsomlighting"
+    - handle: "astrolighting"
+    - handle: "lucislighting"
+    - handle: "audocph"
+    - handle: "frandsencom"
+    - handle: "vipp"
+    - handle: "warmnordic"
+    - handle: "le_klint_lighting"
+    - handle: "louiseroehome"
+    - handle: "wouddesign"
+    - handle: "newworksdk"
+    - handle: "carpyen"
+    - handle: "estiluz"
+    - handle: "faro_barcelona"
+    - handle: "milanlighting"
+    - handle: "vondomslu"
+    - handle: "bluxlighting"
+    - handle: "pallucco_official"
+    - handle: "cappelliniofficial"
+    - handle: "zanotta_spa"
+    - handle: "arflex_official"
+    - handle: "tacchini_italia"
+    - handle: "gallottieradice"
+    - handle: "meridiani.livinginteriors"
+    - handle: "poradafurniture"
+    - handle: "visionnairehomephilosophy"
+    - handle: "fendicasa"
+    - handle: "ceccotti.collezioni"
+    - handle: "poltronafrauofficial"
+    - handle: "glasitalia"
+    - handle: "fiamitalia_official"
+    - handle: "catebanti"
+    - handle: "mdfitalia_official"
+    - handle: "gandiablasco_official"
+    - handle: "manutti_official"
+    - handle: "exteta.official"
+    - handle: "roda.official"
+    - handle: "paola_lenti_official"
+    - handle: "desaltospa"
+    - handle: "kristaliadesign"
+    - handle: "arper"
+    - handle: "magis_official"
+    - handle: "mattiazzisrl"
+    - handle: "plankdesignfurniture"
+    - handle: "pedralispa"
+    - handle: "fast_outdoorlifestyle"
+    - handle: "crassevig"
+    - handle: "billianidesign"
+    - handle: "morosofficial"
+    - handle: "andreuworld"
+
+
+settings:
+  target_images_per_profile: 50
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/IG_Lighting"

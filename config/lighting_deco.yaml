@@ -1,0 +1,27 @@
+seed_urls:
+  - name: Apparatus Studio
+    url: https://apparatusstudio.com
+  - name: Lindsey Adelman
+    url: https://lindseyadelman.com
+  - name: Bocci
+    url: https://bocci.com
+  - name: Gabriel Scott
+    url: https://gabriel-scott.com
+  - name: Roll and Hill
+    url: https://www.rollandhill.com
+  - name: Lee Broom
+    url: https://www.leebroom.com
+  - name: Allied Maker
+    url: https://www.alliedmaker.com
+  - name: CTO Lighting
+    url: https://ctolighting.co.uk
+  - name: In Common With
+    url: https://www.incommonwith.com
+  - name: Paul Matter
+    url: https://paulmatter.com
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 10
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer Inspiration/Lighting_Fixtures"

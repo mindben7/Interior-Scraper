@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interiors Scraper | Autonomous Curator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap');
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: #050508;
+            color: #f3f4f6; 
+            background-image: radial-gradient(circle at 50% 0%, #171725 0%, #050508 70%);
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(25, 25, 35, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal { 
+            font-family: 'Fira Code', monospace; 
+            font-size: 0.8rem; 
+            overflow-y: auto; 
+            background-color: #000000; 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            border: 1px solid #2a2a35; 
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        
+        .terminal::-webkit-scrollbar { width: 6px; }
+        .terminal::-webkit-scrollbar-track { background: transparent; }
+        .terminal::-webkit-scrollbar-thumb { background-color: #4a4a5e; border-radius: 10px; }
+        
+        .log-line { padding: 4px 0; border-bottom: 1px dashed #1a1a24; line-height: 1.6; word-wrap: break-word; }
+        .log-line:last-child { border-bottom: none; }
+        
+        .log-saved { color: #a3e635; text-shadow: 0 0 8px rgba(163, 230, 53, 0.3); font-weight: 500; }
+        .log-failed { color: #fb7185; }
+        .log-info { color: #38bdf8; }
+        .log-warn { color: #fbbf24; }
+        .log-neutral { color: #9ca3af; }
+
+        .status-dot { height: 12px; width: 12px; border-radius: 50%; display: inline-block; }
+        .dot-active { background-color: #a3e635; box-shadow: 0 0 16px #a3e635; animation: pulse 2s infinite; }
+        .dot-inactive { background-color: #4b5563; }
+        
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8 overflow-hidden max-h-screen">
+    <!-- TARGET FILTERS MODAL -->
+    <div id="filters-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md">
+        <div class="glass-panel p-8 w-[400px]">
+            <h3 class="text-xl font-bold text-white mb-6 uppercase tracking-widest text-center text-cyan-300">Target Elements</h3>
+            <div class="flex flex-col gap-5">
+                <label class="cursor-pointer flex items-center justify-between group">
+                    <span class="text-gray-300 font-semibold group-hover:text-white transition-colors text-sm uppercase tracking-wider">Wide Environs</span>
+                    <input type="checkbox" id="mode-wide" class="w-6 h-6 rounded bg-black border-gray-600 text-cyan-400" value="wide" checked>
+                </label>
+                <div class="w-full h-px bg-white/5"></div>
+                <label class="cursor-pointer flex items-center justify-between group">
+                    <span class="text-gray-300 font-semibold group-hover:text-white transition-colors text-sm uppercase tracking-wider">Detail / Macro</span>
+                    <input type="checkbox" id="mode-detail" class="w-6 h-6 rounded bg-black border-gray-600 text-cyan-400" value="detail" checked>
+                </label>
+                <div class="w-full h-px bg-white/5"></div>
+                <label class="cursor-pointer flex items-center justify-between group">
+                    <span class="text-gray-300 font-semibold group-hover:text-white transition-colors text-sm uppercase tracking-wider">Lighting Fixtures</span>
+                    <input type="checkbox" id="mode-lighting" class="w-6 h-6 rounded bg-black border-gray-600 text-cyan-400" value="lighting" checked>
+                </label>
+                <div class="w-full h-px bg-white/5"></div>
+                <label class="cursor-pointer flex items-center justify-between group">
+                    <span class="text-gray-300 font-semibold text-rose-300 group-hover:text-rose-200 transition-colors text-sm uppercase tracking-wider">Lighting (IG)</span>
+                    <input type="checkbox" id="mode-lighting-ig" class="w-6 h-6 rounded bg-black border-gray-600 text-rose-500" value="lighting-ig" checked>
+                </label>
+                <div class="w-full h-px bg-white/5"></div>
+                <label class="cursor-pointer flex items-center justify-between group">
+                    <span class="text-gray-300 font-semibold text-amber-500 group-hover:text-amber-400 transition-colors text-sm uppercase tracking-wider">Mood & Abstract</span>
+                    <input type="checkbox" id="mode-mood" class="w-6 h-6 rounded bg-black border-gray-600 text-amber-500" value="mood" checked>
+                </label>
+                <div class="w-full h-px bg-white/5"></div>
+                <label class="cursor-pointer flex items-center justify-between group">
+                    <span class="text-gray-300 font-semibold text-emerald-400 group-hover:text-emerald-300 transition-colors text-sm uppercase tracking-wider">High-End Restaurant</span>
+                    <input type="checkbox" id="mode-restaurant" class="w-6 h-6 rounded bg-black border-gray-600 text-emerald-500" value="restaurant" checked>
+                </label>
+                <div class="w-full h-px bg-white/5"></div>
+            </div>
+            <button onclick="document.getElementById('filters-modal').classList.add('hidden')" class="w-full mt-8 py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-xl transition-all shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] tracking-widest text-sm">CONFIRM FILTERS</button>
+        </div>
+    </div>
+
+    <!-- VISUAL RAM MATRIX MODAL -->
+    <div id="ram-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl px-2 py-4 md:p-8">
+        <div class="glass-panel p-4 md:p-8 w-full max-w-[1920px] h-full flex flex-col gap-4 relative shadow-[0_0_100px_rgba(6,182,212,0.15)] border border-cyan-500/20 md:rounded-3xl rounded-xl">
+            <button onclick="closeRamModal()" class="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10 isolate z-[60]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-4 pr-12 gap-4 flex-shrink-0">
+                <div>
+                    <h2 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 tracking-widest leading-none mb-2">
+                        <svg class="w-6 h-6 md:w-7 md:h-7 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                        SESSION RAM MATRIX
+                    </h2>
+                    <p class="text-[0.6rem] md:text-xs text-gray-400 tracking-widest uppercase font-bold">Review recent AI decisions. Click any image to forcibly toggle its state and rewrite the Neural Baseline.</p>
+                </div>
+                <div class="flex items-center gap-3 text-[0.6rem] md:text-[0.7rem] tracking-widest font-bold text-gray-500 uppercase bg-black/50 p-2 md:p-3 rounded-xl border border-white/5 whitespace-nowrap overflow-x-auto w-full md:w-auto">
+                    <span class="flex items-center gap-2"><span class="w-2 md:w-3 h-2 md:h-3 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span> System Accepted</span>
+                    <span class="flex items-center gap-2"><span class="w-2 md:w-3 h-2 md:h-3 rounded-full bg-rose-500 shadow-[0_0_10px_rgba(244,63,94,0.5)]"></span> System Rejected</span>
+                </div>
+            </div>
+            
+            <div id="ram-modal-grid" class="flex-grow overflow-y-auto w-full hide-scrollbar pr-2 grid gap-2 md:gap-4 pb-12" style="grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); scrollbar-width: thin;">
+                <!-- Populated via Javascript -->
+                <div class="col-span-full italic text-gray-600 font-bold text-center mt-20">Awaiting AI Session Initialization...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FULLSCREEN INSPECTION MODAL -->
+    <div id="inspection-modal" class="hidden fixed inset-0 z-[70] flex flex-col items-center justify-center bg-black/95 backdrop-blur-3xl p-4 md:p-8">
+        <button onclick="document.getElementById('inspection-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors bg-white/10 p-3 rounded-full hover:bg-white/20 isolate z-[80]">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        
+        <div class="flex-grow w-full flex items-center justify-center relative overflow-hidden my-4 min-h-0">
+            <img id="inspection-image" src="" class="max-w-full max-h-full object-contain rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.8)]" />
+            
+            <div class="absolute bottom-4 inset-x-4 md:inset-x-auto md:max-w-3xl bg-black/80 backdrop-blur-xl p-4 md:p-5 rounded-2xl border border-white/10 shadow-2xl flex flex-col gap-2 pointer-events-none md:mx-auto">
+                <p id="inspection-reasoning" class="text-xs md:text-sm text-gray-300 font-medium leading-relaxed italic text-center text-balance"></p>
+            </div>
+        </div>
+        
+        <div class="shrink-0 w-full flex justify-center pb-6 z-[80]">
+            <button id="inspection-action-btn" onclick="" class="px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-sm md:text-xl tracking-[0.2em] uppercase transition-all flex items-center gap-3 md:gap-4 hover:scale-105 active:scale-95 shadow-2xl shadow-current/20">
+                <span id="inspection-action-icon"></span>
+                <span id="inspection-action-text">FORCE ACTION</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MONTAGE ENGINE MODAL -->
+    <div id="montage-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md">
+        <div class="glass-panel p-4 md:p-8 w-full max-w-7xl h-[98vh] my-auto flex flex-col gap-6 relative shadow-[0_0_100px_rgba(6,182,212,0.15)] border border-cyan-500/20 md:rounded-3xl rounded-xl">
+            <button onclick="document.getElementById('montage-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-cyan-400 transition-colors bg-white/5 p-2 rounded-full hover:bg-white/10 isolate z-[60]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-4 pr-12 gap-4 flex-shrink-0">
+                <h2 class="text-xl md:text-2xl font-extrabold text-white flex items-center gap-3 tracking-widest leading-none mb-2">
+                    <svg class="w-6 h-6 md:w-7 md:h-7 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2m3 10h6M9 7h6"></path></svg>
+                    GEOMETRIC SEQUENCE COMPILER
+                </h2>
+            </div>
+            
+            <p class="text-sm text-gray-400 font-medium tracking-wide leading-relaxed">
+                Automatically sweep your entire image library, evaluate the physical optical structure of every frame via the Neural Engine, and generate DaVinci Resolve-compatible cinematic `.fcpxml` timelines of optically identical sequences.
+            </p>
+            
+            <div class="flex justify-between items-center bg-black/60 p-4 rounded-xl border border-white/5 shadow-inner">
+                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold flex items-center gap-4">
+                    <span>Database: <span id="m-status-text" class="text-amber-500 font-bold drop-shadow-md">STANDBY</span></span>
+                    <span>Indexed Frames: <span id="m-count" class="text-fuchsia-400 font-mono text-base font-bold drop-shadow-[0_0_8px_rgba(217,70,239,0.3)]">0</span></span>
+                </p>
+                <button onclick="startMontageIndex()" id="btn-m-index" class="px-5 py-2.5 bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 hover:border-gray-500 rounded-xl text-[0.65rem] font-bold tracking-widest transition-all shadow-[0_0_10px_rgba(255,255,255,0.05)]">
+                    1. SWEEPING INDEX
+                </button>
+            </div>
+
+            <div class="flex flex-col gap-3 mt-4">
+                <select id="m-target-concept" class="w-full bg-gray-900 border border-fuchsia-900/50 text-fuchsia-300 text-sm font-bold uppercase rounded-xl px-4 py-3 outline-none shadow-inner focus:border-fuchsia-400 transition-colors">
+                    <option value="match-cut">01. Standard Anchor Match-Cut (Push In)</option>
+                    <option value="density-ramp">02. Optical Density Ramp (Minimal to Maximal)</option>
+                    <option value="color-topo">03. Semantic Color Topography (Palette Gradient)</option>
+                    <option value="material-evo">04. Material Evolution (Soft to Hard Tactile)</option>
+                    <option value="infinite-pan">05. Generative Timeline Math (Infinite Pan)</option>
+                    <option value="subject-lock">06. Subject Erasure (Dead-Center Lock)</option>
+                </select>
+
+                <div class="flex items-center gap-3">
+                    <select id="m-target-anchor" class="flex-1 bg-gray-900 border border-fuchsia-900/50 text-fuchsia-400/80 text-xs font-bold uppercase rounded-xl px-4 py-3 outline-none shadow-inner focus:border-fuchsia-400 transition-colors">
+                        <option value="bed">Center-Framed Beds</option>
+                        <option value="vanity">Symmetric Vanities</option>
+                        <option value="sofa">Anchored Sofas</option>
+                        <option value="table">Dining Tables</option>
+                        <option value="pendant">Chandelier Wides</option>
+                        <option value="chair">Designer Chairs</option>
+                    </select>
+                    
+                    <select id="m-target-perspective" class="flex-1 bg-gray-900 border border-fuchsia-900/50 text-fuchsia-400/80 text-xs font-bold uppercase rounded-xl px-4 py-3 outline-none shadow-inner focus:border-fuchsia-400 transition-colors">
+                        <option value="">Any Perspective</option>
+                        <option value="1-point">1-Point Perspective</option>
+                        <option value="2-point">2-Point Perspective</option>
+                        <option value="flat">Flat Elevation</option>
+                    </select>
+                </div>
+                
+                <button onclick="generateMontage()" id="btn-m-gen" class="w-full mt-2 px-6 py-4 bg-fuchsia-600 hover:bg-fuchsia-500 text-white rounded-xl text-sm font-extrabold tracking-widest transition-all shadow-[0_0_20px_rgba(217,70,239,0.4)] hover:shadow-[0_0_25px_rgba(217,70,239,0.6)]">
+                    2. EXPORT SEQUENCE (FCPXML)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1530px] mx-auto h-full flex flex-col">
+        <!-- HEADER ROW -->
+        <header class="flex flex-col xl:flex-row justify-between items-center mb-4 gap-6 glass-panel p-6">
+            <div class="flex items-center gap-6">
+                <div class="w-16 h-16 rounded-[1.2rem] bg-gradient-to-br from-cyan-400 to-blue-700 flex flex-col items-center justify-center shadow-lg shadow-blue-500/30">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-3xl font-extrabold tracking-tight text-white mb-1">INTERIORS<span class="text-cyan-400"> </span>SCRAPER</h1>
+                    <div class="flex items-center gap-3 mt-1">
+                        <span id="sys-dot" class="status-dot dot-inactive"></span>
+                        <span id="sys-text" class="text-sm font-semibold text-gray-400 uppercase tracking-widest leading-none">SYSTEM STANDBY</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOGGLE CONTROL BAY -->
+            <div class="flex flex-col lg:flex-row flex-wrap justify-end items-center gap-4 bg-black/40 p-3 rounded-2xl border border-white/5">
+                <button onclick="document.getElementById('filters-modal').classList.remove('hidden')" class="px-5 py-2.5 bg-gray-900 border border-cyan-900 hover:border-cyan-400 hover:bg-black text-cyan-400 rounded-xl font-bold transition-all shadow-[0_0_10px_rgba(8,145,178,0.2)] flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    FILTERS
+                </button>
+                
+                <button onclick="document.getElementById('montage-modal').classList.remove('hidden')" class="px-5 py-2.5 bg-gray-900 border border-fuchsia-900/50 hover:border-fuchsia-400 hover:bg-black text-fuchsia-400 rounded-xl font-bold transition-all shadow-[0_0_10px_rgba(217,70,239,0.1)] flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    MONTAGE
+                </button>
+                
+                <div class="h-10 w-px bg-white/10 hidden lg:block"></div>
+                
+                <button onclick="openLibrary()" class="px-5 py-2.5 bg-gray-900 hover:bg-gray-800 text-gray-300 rounded-xl font-bold transition-all border border-gray-700 flex items-center gap-2 hover:border-cyan-500 hover:text-cyan-400">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+                    LIBRARY
+                </button>
+                
+                <div class="flex items-center gap-4">
+                    <button id="btn-pause" onclick="togglePause()" class="hidden px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-black rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)] flex items-center gap-2">
+                        <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+                        PAUSE
+                    </button>
+                </div>
+                
+                <select id="luxury-dropdown" class="flex-shrink-0 bg-gray-900 border border-yellow-500/50 text-yellow-500 font-bold uppercase rounded-xl px-4 py-[0.63rem] focus:outline-none focus:border-yellow-400 shadow-[0_0_15px_rgba(234,179,8,0.2)] tracking-widest text-[0.65rem] max-w-[280px] cursor-pointer appearance-none text-center">
+                    <option value="none">Master Autopilot (Randomized)</option>
+                    <option value="top10-luxury" class="font-black">★ ALL 10 LUXURY PRESETS</option>
+                    <option value="target-ad">1. Arch Digest (Wearstler / Stark)</option>
+                    <option value="target-woi">2. World of Interiors (Maximalist)</option>
+                    <option value="target-elle">3. Elle Decor (High-End Eclectic)</option>
+                    <option value="target-galerie">4. Galerie Magazine (Art & Design)</option>
+                    <option value="target-luxe">5. Luxe Interiors (Bespoke Luxury)</option>
+                    <option value="target-vogue">6. Vogue Living (Avant-Garde)</option>
+                    <option value="target-1stdibs">7. 1stDibs Introspective (Wearstler)</option>
+                    <option value="target-interiordesign">8. Interior Design (Modern Luxury)</option>
+                    <option value="target-wallpaper">9. Wallpaper* (Global Avant-Garde)</option>
+                    <option value="target-yatzer">10. Yatzer (High-End Hospitality & Art)</option>
+                    <option value="target-yellowtrace">11. Yellowtrace (Maximalist & Avant-Garde)</option>
+                    <option value="target-covet">12. Covet Edition (Ultimate Luxury DNA)</option>
+                    <option value="target-robbreport">13. Robb Report ($10M+ Real Estate)</option>
+                    <option value="target-hospitality">14. Hospitality Design (Boutique Hotels)</option>
+                    <option value="target-coolhunter">15. The Cool Hunter (Curated Miami-Style Commercial)</option>
+                    <option value="target-surface">16. Surface Magazine (High-Fashion Architecture)</option>
+                    <option value="target-boca">17. Boca do Lobo (Maximalist Interiors)</option>
+                    <option value="target-nuvo">18. Nuvo Magazine (Luxury Lifestyle Spaces)</option>
+                    <option value="target-haute">19. Haute Residence ($20M+ Mansions)</option>
+                    <option value="preset-contemporary" class="font-black">★ 20. Contemporary Design (Minotti / Henge / Liaigre)</option>
+                </select>
+                
+                <input type="text" id="target-url-input" placeholder="OR PASTE PINTEREST BOARD URL OVERRIDE" class="flex-shrink-0 min-w-[280px] bg-gray-900 border border-indigo-500/50 text-indigo-400 font-bold rounded-xl px-4 py-[0.63rem] focus:outline-none focus:border-indigo-400 shadow-[0_0_15px_rgba(99,102,241,0.2)] tracking-widest text-[0.65rem] w-full max-w-[320px] placeholder-indigo-500/50">
+                
+                <button id="btn-start" onclick="toggleAgent()" class="flex-shrink-0 px-8 py-2.5 bg-white hover:bg-gray-200 text-black rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] flex items-center gap-2">
+                    <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                    INITIATE
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN MATRIX CONTENT -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
+            
+            <!-- VISION FEED (Left Hero Column) -->
+            <div class="lg:col-span-5 flex flex-col gap-4 h-full min-h-0">
+                <div class="glass-panel p-6 pb-4 flex-grow flex flex-col h-full items-center justify-center">
+                    <h2 class="w-full text-xs font-bold uppercase tracking-widest text-gray-500 flex items-center gap-2 mb-4">
+                        <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        Neural Vision Camera
+                    </h2>
+                    <div class="w-full relative rounded-2xl overflow-hidden bg-black border border-gray-800 shadow-2xl flex-1 min-h-0 group cursor-pointer" onclick="togglePauseAndShowRam()">
+                        
+                        <!-- PAUSE HOVER OVERLAY -->
+                        <div id="vision-hover-pause" class="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-25 pointer-events-none">
+                            <div class="w-24 h-24 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-2xl text-white">
+                                <svg id="hover-icon-pause" class="w-10 h-10" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                                <svg id="hover-icon-play" class="hidden w-10 h-10" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <span id="hover-text-action" class="mt-4 text-xs font-bold uppercase tracking-widest text-white drop-shadow-md">Click to Pause</span>
+                        </div>
+                        
+                        <!-- HUD DOMAIN TRACKER -->
+                        <div class="absolute top-4 right-4 z-30">
+                            <div class="glass-panel px-3 py-1.5 flex items-center gap-2 border border-white/5 bg-black/40 backdrop-blur-xl rounded-lg shadow-xl">
+                                <span id="domain-dot" class="status-dot dot-inactive w-2 h-2"></span>
+                                <span id="active-domain" class="text-[0.65rem] font-bold text-gray-300 uppercase tracking-widest whitespace-nowrap">SYSTEM STANDBY</span>
+                            </div>
+                        </div>
+
+                        <img id="vision-feed" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="w-full h-full object-contain absolute inset-0 mix-blend-screen opacity-90 transition-opacity duration-300" />
+                        <div class="absolute inset-0 pointer-events-none opacity-20" style="background: repeating-linear-gradient(0deg, transparent, transparent 2px, #fff 2px, #fff 4px); mix-blend-mode: overlay;"></div>
+                        <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+                            <div id="vision-icon" class="hidden w-28 h-28 rounded-full flex items-center justify-center text-6xl shadow-[0_0_50px_rgba(0,0,0,0.95)] backdrop-blur-xl border border-white/10 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 px-10 stats-box">
+                    <div class="flex justify-around items-center text-center px-4">
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 shadow-black">Images Scanned</p>
+                            <p id="stat-analyzed" class="text-6xl font-light text-white font-mono tracking-tighter">0</p>
+                        </div>
+                        <div class="w-px h-20 bg-gradient-to-b from-transparent via-gray-700 to-transparent"></div>
+                        <div>
+                            <p class="text-xs font-bold text-emerald-500/80 uppercase tracking-widest mb-2 shadow-black drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]">Assets Accepted</p>
+                            <p id="stat-global" class="text-6xl font-bold text-emerald-400 font-mono tracking-tighter drop-shadow-[0_0_15px_rgba(52,211,153,0.4)]">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MASTER TERMINAL (Right Column) -->
+            <div class="lg:col-span-7 flex flex-col h-full min-h-0">
+                <div class="glass-panel p-3 pl-6 pr-6 rounded-b-none border-b-0 flex justify-between items-center bg-black/60 backdrop-blur-3xl z-10">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-gray-400">Terminal Standard Output</h2>
+                    <button onclick="clearLogs()" class="text-[0.7rem] uppercase tracking-widest font-extrabold px-4 py-2 bg-gray-800/80 hover:bg-rose-900/50 hover:text-rose-400 hover:border-rose-900/50 rounded-lg transition-all border border-gray-700 shadow-md transform active:scale-95">Wipe Buffer</button>
+                </div>
+                <div class="terminal rounded-t-none rounded-b-3xl border-t-0 flex-grow relative overflow-auto h-full" id="log-window">
+                    <!-- Text inserted reactively here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isRunning = false;
+        let isPaused = false;
+        const btnStart = document.getElementById('btn-start');
+        const btnPause = document.getElementById('btn-pause');
+        const sysDot = document.getElementById('sys-dot');
+        const sysText = document.getElementById('sys-text');
+        
+        // Escape hotkey for the filters modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const mod = document.getElementById('filters-modal');
+                if (mod && !mod.classList.contains('hidden')) {
+                    mod.classList.add('hidden');
+                }
+                const mMod = document.getElementById('montage-modal');
+                if (mMod && !mMod.classList.contains('hidden')) {
+                    mMod.classList.add('hidden');
+                }
+            }
+        });
+        
+        function getSelectedModes() {
+            const m = [];
+            if(document.getElementById('mode-wide').checked) m.push('wide');
+            if(document.getElementById('mode-detail').checked) m.push('detail');
+            if(document.getElementById('mode-lighting').checked) m.push('lighting');
+            if(document.getElementById('mode-lighting-ig').checked) m.push('lighting-ig');
+            if(document.getElementById('mode-mood').checked) m.push('mood');
+            if(document.getElementById('mode-restaurant').checked) m.push('restaurant');
+            return m.join(',');
+        }
+
+        function loadSavedModes() {
+            const saved = localStorage.getItem('lastModes');
+            if (saved) {
+                const modes = saved.split(',');
+                ['wide', 'detail', 'lighting', 'lighting-ig', 'mood', 'restaurant'].forEach(mid => {
+                    const el = document.getElementById('mode-'+mid);
+                    if (el) el.checked = modes.includes(mid);
+                });
+            }
+        }
+        loadSavedModes();
+        
+        function loadSavedUrl() {
+            const savedUrl = localStorage.getItem('lastTargetUrl');
+            if (savedUrl !== null) {
+                const urlInput = document.getElementById('target-url-input');
+                const dropInput = document.getElementById('luxury-dropdown');
+                if (urlInput) urlInput.value = savedUrl;
+                if (dropInput) {
+                    const opts = Array.from(dropInput.options);
+                    const match = opts.find(o => o.value === savedUrl);
+                    if (match) dropInput.value = savedUrl;
+                    else dropInput.value = "";
+                }
+            }
+        }
+        loadSavedUrl();
+        
+        document.getElementById('luxury-dropdown')?.addEventListener('change', (e) => {
+            localStorage.setItem('lastTargetUrl', e.target.value);
+        });
+        document.getElementById('target-url-input')?.addEventListener('input', (e) => {
+            localStorage.setItem('lastTargetUrl', e.target.value);
+        });
+
+        async function fetchSystemState() {
+            try {
+                const res = await fetch('/api/system/status');
+                const data = await res.json();
+                isRunning = data.active;
+                isPaused = data.paused || false;
+                
+                if (isRunning) {
+                    btnPause.classList.remove('hidden');
+                    if (isPaused) {
+                        btnPause.innerHTML = `<svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg> RESUME`;
+                        btnPause.className = "px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center gap-2";
+                        
+                        sysDot.className = "status-dot w-3 h-3 bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]";
+                        sysText.innerText = `AGENT PAUSED • [${data.modes.join(' + ').toUpperCase()}]`;
+                        sysText.className = "text-[0.7rem] font-extrabold text-amber-500 uppercase tracking-widest";
+                        
+                        const hp = document.getElementById('hover-icon-pause');
+                        if (hp) hp.classList.add('hidden');
+                        const hpl = document.getElementById('hover-icon-play');
+                        if (hpl) hpl.classList.remove('hidden');
+                        const ht = document.getElementById('hover-text-action');
+                        if (ht) ht.innerText = "Click to Resume";
+                    } else {
+                        btnPause.innerHTML = `<svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg> PAUSE`;
+                        btnPause.className = "px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-black rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(245,158,11,0.2)] flex items-center gap-2";
+                        
+                        sysDot.className = "status-dot dot-active";
+                        sysText.innerText = `AGENT ACTIVE • [${data.modes.join(' + ').toUpperCase()}]`;
+                        sysText.className = "text-[0.7rem] font-extrabold text-cyan-400 uppercase tracking-widest";
+                        
+                        const hp = document.getElementById('hover-icon-pause');
+                        if (hp) hp.classList.remove('hidden');
+                        const hpl = document.getElementById('hover-icon-play');
+                        if (hpl) hpl.classList.add('hidden');
+                        const ht = document.getElementById('hover-text-action');
+                        if (ht) ht.innerText = "Click to Pause";
+                    }
+
+                    btnStart.innerHTML = `<svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8 7a1 1 0 00-1 1v4a1 1 0 002 0V8a1 1 0 00-1-1zm4 0a1 1 0 00-1 1v4a1 1 0 002 0V8a1 1 0 00-1-1z" clip-rule="evenodd"/></svg> ABORT AGENT`;
+                    btnStart.className = "px-8 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(225,29,72,0.4)] hover:shadow-[0_0_30px_rgba(225,29,72,0.6)] flex items-center gap-2";
+                    document.getElementById('luxury-dropdown').disabled = true;
+                    document.getElementById('luxury-dropdown').classList.add('opacity-50');
+                    document.getElementById('target-url-input').disabled = true;
+                    document.getElementById('target-url-input').classList.add('opacity-50');
+                    
+                    ['wide','detail','lighting','lighting-ig','millwork','chair','vintage-editorial'].forEach(mid => {
+                        const el = document.getElementById('mode-'+mid);
+                        el.checked = data.modes.includes(mid);
+                        el.disabled = true;
+                        el.parentElement.classList.add('opacity-40', 'cursor-not-allowed');
+                    });
+                } else {
+                    btnStart.innerHTML = `<svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg> INITIATE`;
+                    btnStart.className = "px-8 py-2.5 bg-white hover:bg-gray-200 text-black rounded-xl font-bold transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)] flex items-center gap-2";
+                    
+                    btnPause.classList.add('hidden');
+                    
+                    sysDot.className = "status-dot dot-inactive";
+                    sysText.innerText = "SYSTEM STANDBY";
+                    sysText.className = "text-[0.7rem] font-semibold text-gray-500 uppercase tracking-widest";
+                    document.getElementById('luxury-dropdown').disabled = false;
+                    document.getElementById('luxury-dropdown').classList.remove('opacity-50');
+                    document.getElementById('target-url-input').disabled = false;
+                    document.getElementById('target-url-input').classList.remove('opacity-50');
+                    
+                    ['wide','detail','lighting','lighting-ig','millwork','chair','vintage-editorial'].forEach(mid => {
+                        const el = document.getElementById('mode-'+mid);
+                        el.disabled = false;
+                        el.parentElement.classList.remove('opacity-40', 'cursor-not-allowed');
+                    });
+                }
+            } catch(e) {}
+        }
+        async function togglePauseAndShowRam() {
+            if (isRunning && !isPaused) {
+                await fetch('/api/control/pause', {method: 'POST'});
+                fetchSystemState();
+            }
+            document.getElementById('ram-modal').classList.remove('hidden');
+            fetchRamHistory();
+        }
+        async function closeRamModal() {
+            document.getElementById('ram-modal').classList.add('hidden');
+            if (isRunning && isPaused) {
+                await fetch('/api/control/resume', {method: 'POST'});
+                fetchSystemState();
+            }
+        }
+
+        async function togglePause() {
+            if (isPaused) {
+                await fetch('/api/control/resume', {method: 'POST'});
+            } else {
+                await fetch('/api/control/pause', {method: 'POST'});
+            }
+            fetchSystemState();
+        }
+
+        async function toggleAgent() {
+            if (isRunning) {
+                await fetch('/api/control/stop', {method: 'POST'});
+                fetchSystemState();
+            } else {
+                let modes = getSelectedModes();
+                if (!modes) {
+                    const st = document.getElementById('sys-text');
+                    st.innerText = "ERROR: SELECT TARGET MODES";
+                    st.classList.add('text-rose-500');
+                    setTimeout(() => st.classList.remove('text-rose-500'), 2000);
+                    return;
+                }
+                
+                const targetDropdown = document.getElementById('luxury-dropdown').value;
+                if (targetDropdown !== "none") {
+                    modes += "," + targetDropdown;
+                }
+                
+                const targetUrl = document.getElementById('target-url-input')?.value || "";
+                
+                localStorage.setItem('lastModes', modes);
+                await fetch('/api/control/start/' + modes, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({target_url: targetUrl})
+                });
+                fetchSystemState();
+            }
+        }
+
+        async function openLibrary() {
+            await fetch('/api/control/open_library', {method: 'POST'});
+        }
+
+        async function clearLogs() {
+            if(confirm("Wipe all standard output strings from the DB?")) {
+                await fetch('/api/clear', {method: 'POST'});
+            }
+        }
+
+        async function submitOverride() {
+             const category = document.getElementById('override-category').value;
+             const btn = document.querySelector('button[onclick="submitOverride()"]');
+             const orig = btn.innerHTML;
+             btn.innerHTML = "SAVING...";
+             
+             try {
+                 const res = await fetch('/api/control/override', {
+                     method: 'POST',
+                     headers: {'Content-Type': 'application/json'},
+                     body: JSON.stringify({category: category})
+                 });
+                 const data = await res.json();
+                 if (data.status === "success") {
+                     btn.innerHTML = "SAVED!";
+                 } else {
+                     btn.innerHTML = "ERROR";
+                 }
+             } catch(e) {
+                 btn.innerHTML = "ERROR";
+             }
+             setTimeout(() => { btn.innerHTML = orig; fetchSystemState(); }, 2000);
+        }
+
+        function formatLogLine(text) {
+            let cls = '';
+            if (text.includes("[+] Saved") || text.includes("SAVED")) cls = 'log-saved';
+            else if (text.includes("Skipped") || text.includes("Rejected")) cls = 'log-failed';
+            else if (text.includes("CRITICAL") || text.includes("Error") || text.includes("offline")) cls = 'log-failed font-bold underline decoration-rose-500/50 underline-offset-4';
+            else if (text.includes("[*]")) cls = 'log-info';
+            else if (text.includes("[!]")) cls = 'log-warn';
+            else cls = 'log-neutral opacity-80';
+            
+            let html = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            return `<div class="log-line ${cls}">${html}</div>`;
+        }
+
+        let lastLogLinesCount = 0;
+
+        async function fetchState() {
+            await fetchSystemState();
+
+            try {
+                const res = await fetch('/api/logs?cb=' + Date.now());
+                const data = await res.json();
+                
+                document.getElementById('stat-analyzed').innerText = data.stats.analyzed;
+                document.getElementById('stat-global').innerText = data.stats.global_total;
+                
+                if (data.stats.current_domain) {
+                    const domLabel = document.getElementById('active-domain');
+                    const domDot = document.getElementById('domain-dot');
+                    domLabel.innerText = data.stats.current_domain;
+                    if(data.stats.current_domain === "SYSTEM STANDBY") {
+                        domDot.className = "status-dot dot-inactive w-2 h-2";
+                    } else {
+                        domDot.className = "status-dot dot-active w-2 h-2";
+                    }
+                }
+                
+                const win = document.getElementById('log-window');
+                const content = data.lines.map(l => formatLogLine(l)).join('');
+                if (data.total_lines !== window.lastTotalLines) {
+                    win.innerHTML = `<div class="w-full pt-4 pb-4">${content}</div>`;
+                    window.lastTotalLines = data.total_lines;
+                    setTimeout(() => win.scrollTop = win.scrollHeight, 20);
+                }
+            } catch(e) {}
+            
+            try {
+                const res = await fetch('/api/vision_status?cb=' + Date.now());
+                const data = await res.json();
+                
+                const vImg = document.getElementById('vision-feed');
+                if (data.mtime && data.mtime !== window.lastVisionMtime && data.img) {
+                    window.lastVisionMtime = data.mtime;
+                    const temp = new Image();
+                    temp.onload = () => { vImg.src = temp.src; };
+                    temp.src = data.img + '?t=' + data.mtime;
+                }
+                
+                const vIcon = document.getElementById('vision-icon');
+                if(data.status !== window.lastVisionStatus) {
+                    window.lastVisionStatus = data.status;
+                    vIcon.className = "hidden w-28 h-28 rounded-full flex items-center justify-center text-6xl shadow-[0_0_50px_rgba(0,0,0,0.8)] backdrop-blur-xl border border-white/20 transition-all duration-500 scale-100";
+                    
+                    if (data.status === "ACCEPTED" || data.status === "MANUALLY ACCEPTED") {
+                        vIcon.innerHTML = '✅';
+                        vIcon.classList.add('bg-emerald-500/80');
+                        vIcon.classList.remove('hidden', 'scale-90');
+                        setTimeout(() => vIcon.classList.add('scale-90', 'opacity-0'), 2500);
+                    } else if (data.status === "REJECTED") {
+                        vIcon.innerHTML = '🚫';
+                        vIcon.classList.add('bg-rose-600/90');
+                        vIcon.classList.remove('hidden', 'scale-90');
+                        setTimeout(() => vIcon.classList.add('scale-90', 'opacity-0'), 2500);
+                    } else if (data.status === "EVALUATING") {
+                        vIcon.innerHTML = '⟳';
+                        vIcon.classList.add('bg-indigo-600/80', 'animate-spin');
+                        vIcon.classList.remove('hidden', 'scale-90');
+                    }
+                }
+            } catch(e) {}
+        }
+
+        async function fetchMontageStatus() {
+            try {
+                const res = await fetch('/api/montage/status');
+                const data = await res.json();
+                
+                document.getElementById('m-count').innerText = data.indexed_images;
+                const sText = document.getElementById('m-status-text');
+                const btnIdx = document.getElementById('btn-m-index');
+                
+                if (data.indexing) {
+                    sText.innerText = "SWEEPING LIBRARY...";
+                    sText.className = "text-emerald-400 animate-pulse";
+                    btnIdx.innerText = "INDEXING...";
+                    btnIdx.disabled = true;
+                    btnIdx.classList.add('opacity-50');
+                } else {
+                    sText.innerText = "STANDBY";
+                    sText.className = "text-gray-500";
+                    btnIdx.innerText = "1. SWEEPING INDEX";
+                    btnIdx.disabled = false;
+                    btnIdx.classList.remove('opacity-50');
+                }
+            } catch(e) {}
+        }
+        
+        async function startMontageIndex() {
+            if(confirm("Ping the Gemini 1.5 Flash Vision engine to process the strict structural geometry of every downloaded image? This runs in the background.")) {
+                await fetch('/api/montage/index', {method:'POST'});
+                fetchMontageStatus();
+            }
+        }
+        
+        async function generateMontage() {
+            const concept = document.getElementById('m-target-concept').value;
+            const anchor = document.getElementById('m-target-anchor').value;
+            const persp = document.getElementById('m-target-perspective').value;
+            const btn = document.getElementById('btn-m-gen');
+            const orig = btn.innerHTML;
+            
+            btn.innerHTML = "COMPILING...";
+            btn.classList.add('animate-pulse');
+            
+            try {
+                const res = await fetch('/api/montage/generate', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({concept: concept, anchor: anchor, perspective: persp, limit: 30})
+                });
+                const data = await res.json();
+                btn.classList.remove('animate-pulse');
+                
+                if(data.status === "success") {
+                    btn.innerHTML = "DROPPED TO DESKTOP!";
+                    btn.className = "px-6 py-2 bg-emerald-500 text-white rounded-xl text-[0.65rem] font-extrabold tracking-widest shadow-[0_0_15px_rgba(16,185,129,0.5)]";
+                } else {
+                    alert(data.error || "Failed. Try sweeping more images or choosing broader parameters.");
+                    btn.innerHTML = orig;
+                }
+                setTimeout(() => {
+                    btn.innerHTML = orig;
+                    btn.className = "px-6 py-2 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl text-[0.65rem] font-extrabold tracking-widest transition-all shadow-[0_0_15px_rgba(6,182,212,0.4)]";
+                }, 3000);
+            } catch(e) {
+                btn.innerHTML = "ERROR";
+                setTimeout(() => btn.innerHTML = orig, 2000);
+            }
+        }
+
+        async function fetchRamHistory() {
+            try {
+                const res = await fetch('/api/system/ram');
+                const data = await res.json();
+                const grid = document.getElementById('ram-modal-grid');
+                if (!grid) return;
+                
+                if (!data.ram || data.ram.length === 0) {
+                    if (grid.innerHTML.includes('Awaiting AI Session Initialization')) {
+                        grid.innerHTML = '<div class="col-span-full italic text-gray-600 font-bold text-center mt-20">Awaiting AI Session Initialization...</div>';
+                    }
+                    return;
+                }
+                
+                let html = '';
+                data.ram.forEach(item => {
+                    const isAcc = item.is_accepted;
+                    const statusColor = isAcc ? 'border-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)]' : 'border-rose-500 shadow-[0_0_15px_rgba(244,63,94,0.3)]';
+                    
+                    const action = isAcc ? 'delete' : 'rescue';
+                    const targetCategory = item.assigned_category || 'wide';
+                    
+                    const hoverIcon = '<svg class="w-10 h-10 text-white drop-shadow-2xl" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>';
+                    const escapedReasoning = item.reasoning ? item.reasoning.replace(/`/g, '\\`').replace(/'/g, "\\'") : "No reasoning provided.";
+
+                    html += `
+                        <div onclick="openInspectionModal('${item.hash}', '${item.filename}', '${action}', '${targetCategory}', \`${escapedReasoning}\`)" class="relative group cursor-pointer aspect-square rounded-2xl overflow-hidden border-2 transition-all duration-300 transform hover:scale-[1.03] hover:z-40 hover:shadow-2xl hover:shadow-cyan-500/20 ${statusColor}">
+                            <img src="/api/system/ram_image/${item.filename}" class="w-full h-full object-cover opacity-80 group-hover:opacity-30 transition-opacity duration-300" loading="lazy" />
+                            
+                            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+                                <div class="bg-black/80 backdrop-blur-md rounded-full p-3 mb-2 shadow-[0_0_30px_rgba(0,0,0,0.8)] border border-white/20">
+                                    ${hoverIcon}
+                                </div>
+                                <span class="bg-black/90 px-3 py-1.5 rounded-lg text-[0.6rem] font-black uppercase tracking-widest text-white shadow-xl border border-white/10">
+                                    INSPECT RAW
+                                </span>
+                            </div>
+                            
+                            <!-- Static Badge -->
+                            <div class="absolute top-2 right-2 bg-black/80 backdrop-blur-md px-2 py-1 rounded border border-white/10 shadow-lg flex items-center gap-1 z-10">
+                                <span class="w-2 h-2 rounded-full ${isAcc ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-rose-500 shadow-[0_0_8px_rgba(244,63,94,0.5)]'}"></span>
+                            </div>
+                            
+                            <!-- Reasoning Overlay -->
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-3 pt-12 pb-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 pointer-events-none z-10">
+                                <p class="text-[0.6rem] text-gray-300 font-medium leading-tight line-clamp-4">${item.reasoning.replace(/"/g, '&quot;')}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                if (grid.dataset.lastHtml !== html) {
+                    grid.innerHTML = html;
+                    grid.dataset.lastHtml = html;
+                }
+            } catch(e) {}
+        }
+        
+        async function overrideRam(hash, action, category) {
+            try {
+                await fetch('/api/control/override_ram', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({hash: hash, action: action, category: category})
+                });
+                fetchRamHistory();
+            } catch(e) {}
+        }
+
+        function openInspectionModal(hash, filename, action, category, reasoning) {
+            const modal = document.getElementById('inspection-modal');
+            const img = document.getElementById('inspection-image');
+            const reasonEl = document.getElementById('inspection-reasoning');
+            const btn = document.getElementById('inspection-action-btn');
+            const btnIcon = document.getElementById('inspection-action-icon');
+            const btnText = document.getElementById('inspection-action-text');
+            
+            img.src = '/api/system/ram_image/' + filename;
+            reasonEl.innerHTML = reasoning;
+            
+            if(action === 'delete') {
+                btn.className = "px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-sm md:text-xl tracking-[0.2em] uppercase transition-all flex items-center gap-3 md:gap-4 hover:scale-105 active:scale-95 shadow-2xl bg-rose-600 hover:bg-rose-500 text-white shadow-rose-600/30 border border-rose-400/30";
+                btnIcon.innerHTML = `<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>`;
+                btnText.innerText = "FORCE DELETE FROM MANIFEST";
+            } else {
+                btn.className = "px-8 md:px-12 py-4 md:py-5 rounded-full font-black text-sm md:text-xl tracking-[0.2em] uppercase transition-all flex items-center gap-3 md:gap-4 hover:scale-105 active:scale-95 shadow-2xl bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/30 border border-emerald-400/30";
+                btnIcon.innerHTML = `<svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>`;
+                btnText.innerText = "OVERRIDE & RESCUE ASSET";
+            }
+            
+            btn.onclick = async function() {
+                const origHtml = btn.innerHTML;
+                btn.innerHTML = "COMMITTING DNA...";
+                await overrideRam(hash, action, category);
+                modal.classList.add('hidden');
+            };
+            
+            modal.classList.remove('hidden');
+        }
+
+        setInterval(fetchRamHistory, 2500);
+        fetchRamHistory();
+
+        setInterval(fetchMontageStatus, 2000);
+        setInterval(fetchState, 800);
+        fetchState();
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+seed_urls:
+  # -- LUXURY TILE & STONE --
+  - name: Cle Tile
+    url: https://www.cletile.com/
+  - name: Fireclay Tile
+    url: https://www.fireclaytile.com/
+  - name: Ann Sacks
+    url: https://www.annsacks.com/
+  - name: Mutina
+    url: https://www.mutina.it/en/
+  - name: Artistic Tile
+    url: https://www.artistictile.com/
+  - name: Zia Tile
+    url: https://www.ziatile.com/
+  - name: Riad Tile
+    url: https://www.riadtile.com/
+  - name: Mosaic Factory
+    url: https://mosaicfactory.com/
+
+  # -- HIGH-END TEXTILES & FABRICS --
+  - name: Schumacher
+    url: https://fschumacher.com/
+  - name: Pierre Frey
+    url: https://www.pierrefrey.com/
+  - name: Kvadrat
+    url: https://www.kvadrat.dk/
+  - name: Zak and Fox
+    url: https://www.zakandfox.com/
+  - name: Kelly Wearstler Fabrics
+    url: https://www.kellywearstler.com/fabric
+  - name: Christopher Farr Cloth
+    url: https://christopherfarrcloth.com/
+  
+  # -- PREMIUM HARDWARE & PLUMBING --
+  - name: Waterworks
+    url: https://www.waterworks.com/
+  - name: Armac Martin
+    url: https://www.armacmartin.co.uk/
+  - name: Buster and Punch
+    url: https://www.busterandpunch.com/
+  - name: The Urban Electric Co
+    url: https://urbanelectric.com/
+  - name: Joseph Giles
+    url: https://www.josephgiles.com/
+
+  # -- LUXURY WOOD & FLOORING --
+  - name: Dinesen
+    url: https://dinesen.com/
+  - name: Madera
+    url: https://maderasurfaces.com/
+  - name: Schotten and Hansen
+    url: https://www.schotten-hansen.com/
+    
+  # -- PAINT & LIMEWASH PLASTER --
+  - name: Farrow and Ball
+    url: https://www.farrow-ball.com/
+  - name: Portola Paints
+    url: https://www.portolapaints.com/
+  - name: Bauwerk Colour
+    url: https://bauwerkcolour.com/
+  - name: Clayworks
+    url: https://clay-works.com/
+  - name: Color Atelier
+    url: https://coloratelierpaint.com/
+
+settings:
+  min_width: 800
+  min_height: 600
+  target_images_per_pub: 50
+  output_dir: "/Volumes/BT4TB/_CLIENTS/Ruby/All Ruby Projects/Interior Designer পরীক্ষ Inspiration/Images"
