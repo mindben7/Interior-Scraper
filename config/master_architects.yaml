@@ -1,0 +1,45 @@
+description: "The absolute pinnacle of Ultra-Luxury Architectural Design. This list focuses exclusively on Elite Master Architects and High-End Editorial Magazines specializing in Italian Modernism, Belgian Minimalism, and Dark Mood Contemporary Design. These assets are guaranteed to feature heroic materials, low-slung proportions, and master-class lighting."
+
+publications:
+  # The Godfather Tier
+  - url: "https://www.vincentvanduysen.com/projects"
+  - url: "https://lissoniandpartners.com/en/projects/"
+  - url: "https://www.josephdirand.com/projects"
+  - url: "https://www.studioliaigre.com/projects"
+
+  # The Global Megastudios
+  - url: "https://www.saota.com/projects/"
+  - url: "https://www.woodsbagot.com/projects/"
+  - url: "https://www.kkaa.co.jp/en/project/"
+  - url: "https://www.johnpawson.com/works"
+
+  # Elite Independent Masters
+  - url: "https://roseuniacke.com/pages/projects"
+  - url: "https://colinking.com/work/"
+  - url: "https://normarchitects.com/work/"
+  - url: "https://www.axel-vervoordt.com/interior-design/projects"
+  - url: "https://atelier-am.com/projects"
+  - url: "https://www.studio-ko.fr/fr/projets"
+  - url: "https://jonasbjerrepoulsen.com/"
+
+  # Modern Abstract Visionaries 
+  - url: "https://framework.eu/projects"
+  - url: "https://dirkjanvisser.com/"
+  - url: "https://ruudvandenoetelaar.com/projects"
+  - url: "https://graenestudio.com/projects/"
+  - url: "https://flackstudio.com.au/projects/"
+  - url: "https://discinteriors.com/portfolio/"
+
+  # High-End Pure Editorial Magazines 
+  - url: "https://www.yellowtrace.com.au/interior-design/"
+  - url: "https://www.dezeen.com/interiors/"
+  - url: "https://estliving.com/interiors/"
+  - url: "https://thelocalproject.com.au/category/articles/interiors/"
+  - url: "https://leibal.com/interiors/"
+  - url: "https://www.yatzer.com/interiors"
+
+settings:
+  chunking: true
+  swarm_compatible: true
+  min_width: 800
+  min_height: 800

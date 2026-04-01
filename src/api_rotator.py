@@ -1,13 +1,17 @@
 import os
 from google import genai
 import fcntl
+from dotenv import load_dotenv
 
-API_KEYS = [
-    "AIzaSyD9lGFROb_EYFefJixKyQvqhFvKCQx-7VA",
-    "AIzaSyA92wFPPGVn5toKEiKRYyxR0Wec-j_tNGg",
-    "AIzaSyBrGtrn_wlrqHdGBrPdx5rFsVrdYPLp72k",
-    "AIzaSyA99mrDF_lhiC2SuXJ2QNtieZEfXI9M14Q"
-]
+load_dotenv()
+
+API_KEYS = []
+for k, v in os.environ.items():
+    if k.startswith("GEMINI_API_KEY"):
+        API_KEYS.append(v)
+
+if not API_KEYS:
+    print("[!] FATAL: No API keys found. Add GEMINI_API_KEY_1=\"Your-New-Key\" to your .env file.")
 
 USAGE_FILE = "data/api_usage_tracker.txt"
 FAILURE_FILE = "data/api_failure_tracker.txt"

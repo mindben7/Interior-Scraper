@@ -171,11 +171,12 @@ def start_agent(modes_str):
     if target_url:
         cmd_extras = f" --target-url '{target_url}'"
     
-    if "preset-contemporary" in modes_str.lower():
+    if "preset-contemporary" in modes_str.lower() or "preset-architects" in modes_str.lower():
         try:
-            with open(LOG_FILE, 'a') as f: f.write(f"\\n[⚡] SWARM ARCHITECTURE DETECTED. SCALING INTO 4 BACKGROUND THREADS...\\n")
+            with open(LOG_FILE, 'a') as f: f.write(f"\\n[⚡] SWARM ARCHITECTURE DETECTED. SCALING INTO 2 BACKGROUND THREADS...\\n")
         except: pass
-        os.system(f"cd {WORKSPACE} && nohup venv/bin/python swarm_manager.py 4 > /dev/null 2>&1 &")
+        preset = "preset-architects" if "preset-architects" in modes_str.lower() else "preset-contemporary"
+        os.system(f"cd {WORKSPACE} && nohup venv/bin/python swarm_manager.py 2 '{preset}' > /dev/null 2>&1 &")
     else:
         # Modes String comes in as "wide,detail,lighting"
         os.system(f"cd {WORKSPACE} && nohup venv/bin/python -u agent.py --modes {modes_str}{cmd_extras} >> {LOG_FILE} 2>&1 &")

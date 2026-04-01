@@ -26,8 +26,11 @@ async def run_agent(modes, target_url=None, chunk_index=0, chunk_total=1):
         print(f"[!] External Drive Missing. Falling back to local cache: ./data/")
         
     if "preset-contemporary" in modes_str.lower():
-        base_target = os.path.join(base_target, "Studio Ramirez ROW01")
+        base_target = os.path.join(base_target, "Studio Ramirez ROW01", "Furniture_Brands")
         print(f"[*] CONTEMPORARY PRESET: Routing to dedicated sub-folder -> {base_target}")
+    elif "preset-architects" in modes_str.lower():
+        base_target = os.path.join(base_target, "Studio Ramirez ROW01", "Master_Architects")
+        print(f"[*] ARCHITECT PRESET: Routing to dedicated sub-folder -> {base_target}")
         
     os.makedirs(base_target, exist_ok=True)
 
@@ -98,6 +101,16 @@ async def run_agent(modes, target_url=None, chunk_index=0, chunk_total=1):
                     if isinstance(s, dict) and s.get('url') and s.get('url') not in seen_urls:
                         seen_urls.add(s.get('url'))
                         seeds.append(s)
+
+    # 2.6 Master Architects Preset
+    elif "preset-architects" in modes_str.lower():
+        if os.path.exists('config/master_architects.yaml'):
+            with open('config/master_architects.yaml', 'r') as f:
+                cfg = yaml.safe_load(f)
+                for s in cfg.get('publications', []):
+                    if isinstance(s, dict) and s.get('url') and s.get('url') not in seen_urls:
+                        seen_urls.add(s.get('url'))
+                        seeds.append(s)
     else:
         # 3. Master Lighting Architecture Directory
         if "lighting" in modes:
@@ -154,7 +167,7 @@ async def run_agent(modes, target_url=None, chunk_index=0, chunk_total=1):
             for line in sf: swept_urls.add(line.strip())
 
     domain_queue = []
-    is_explicit_run = selected_target or "top10-luxury" in modes_str.lower() or "preset-contemporary" in modes_str.lower()
+    is_explicit_run = selected_target or "top10-luxury" in modes_str.lower() or "preset-contemporary" in modes_str.lower() or "preset-architects" in modes_str.lower()
     for seed in seeds:
         url = seed.get('url')
         domain = urlparse(url).netloc
@@ -288,27 +301,22 @@ async def run_agent(modes, target_url=None, chunk_index=0, chunk_total=1):
                     if any(w in u_lower for w in ['lamp', 'pendant', 'sconce', 'chandelier', 'fixture', 'lighting', 'suspension']): s += 20
                 if "detail" in modes:
                     if any(w in u_lower for w in ['/detail', '/object', '/styling', '/close', '/material', '/texture', '/furniture', '/finish', '/fabric']): s += 15
-                if "chair" in modes:
-                    if any(w in u_lower for w in ['/furniture', '/seating', '/chair', '/lounge', '/sofa', '/armchair', '/product', '/collection']): s += 20
-                if "restaurant" in modes:
-                    if any(w in u_lower for w in ['restaurant', 'dining', 'bar', 'cafe', 'hospitality', 'bistro', 'brasserie', '/food', 'lounge']): s += 25
+                if any(m.lower() in ["preset-contemporary", "preset-architects"] for m in modes):
+                    # The "Elite Contemporary Master" Booster
+                    if any(w in u_lower for w in ['villa', 'penthouse', 'contemporary', 'minimalist', 'italian', 'bespoke', 'modernism', 'dark', 'monochromatic', 'luxury', 'stone', 'marble']):
+                        s += 80
                     
-                # The "Elite Aesthetics" Booster (Kelly Wearstler / Starck / Maximalist)
-                if any(w in u_lower for w in ['wearstler', 'starck', 'luxury', 'mansion', 'chateau', 'maximalist', 'bespoke', 'paris', 'regency', 'glamour', 'estate', 'high-end', 'deniot', 'wanders', 'art-deco', 'miami', 'florida', 'deco', 'neo-classical']):
-                    s += 60
-                
-                # The "Cheap / Rustic" Penalizer
-                if any(w in u_lower for w in ['farm', 'barn', 'cabin', 'tiny-home', 'diy', 'budget', 'affordable', 'rustic', 'cottage']):
-                    s -= 50
-                    
-                # Universal Negative Heuristic (Dodge generic corporate pages)
-                if any(w in u_lower for w in ['/about', '/contact', '/privacy', '/terms', '/press', '/faq', '/cart', '/checkout']):
-                    s -= 100
+                # Universal Negative Heuristic (Dodge generic corporate pages and toxic design styles)
+                if any(w in u_lower for w in ['/about', '/contact', '/privacy', '/terms', '/press', '/faq', '/cart', '/checkout', '/careers']):
+                    s -= 200
                     
                 return s + len(u.split('/'))
 
-            commerce_keys = ['project', 'portfolio', '/p/', 'product', 'collection', 'category', 'item', 'shop', 'store']
-            sorted_articles = sorted(list(article_links), key=dynamic_score, reverse=True)
+            # The Extreme Aesthetic Blocklist - Physically delete URLs pointing to wrong genres before they are scored
+            toxic_keywords = ['farm', 'barn', 'cabin', 'tiny-home', 'diy', 'budget', 'affordable', 'rustic', 'cottage', 'coastal', 'beach', 'hamptons', 'midcentury', 'mid-century', 'traditional', 'victorian', 'country']
+            clean_articles = [u for u in article_links if not any(tox in u.lower() for tox in toxic_keywords)]
+            
+            sorted_articles = sorted(list(clean_articles), key=dynamic_score, reverse=True)
             
             sorted_articles = [u for u in sorted_articles if u not in swept_urls]
             if current_url not in sorted_articles: sorted_articles.insert(0, current_url)

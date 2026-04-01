@@ -28,8 +28,10 @@ def main():
     os.system("pkill -f 'agent.py --modes'")
     time.sleep(1)
     
-    modes = "wide,detail,lighting,mood,preset-contemporary"
-    print(f"\n[*] Spinning up {n_agents} completely isolated Swarm Agents...")
+    preset_override = sys.argv[2] if len(sys.argv) > 2 else "preset-contemporary"
+    
+    modes = f"wide,detail,lighting,mood,{preset_override}"
+    print(f"\n[*] Spinning up {n_agents} completely isolated Swarm Agents with preset: {preset_override}...")
     
     workspace = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(workspace, "data")

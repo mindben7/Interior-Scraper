@@ -18,7 +18,7 @@ class AgentFilter:
         
         rules_text = "\n".join(f"- {m}" for k, m in mode_rules.items() if k in self.modes)
         
-        if "preset-contemporary" in [m.lower() for m in self.modes]:
+        if any(m.lower() in ["preset-contemporary", "preset-architects"] for m in self.modes):
             bias_title = "THE CONTEMPORARY MASTER PROTOCOL"
             bias_content = ("You are evaluating imagery for a specific client hunting for the world's most elite contemporary and minimalist interior architecture. You MUST aggressively seek out and ONLY ACCEPT images that exhibit this exact aesthetic:\n"
                             "- THE VIBE: Ultra-luxury tailored contemporary, moody architectural spaces, and highly textured minimalism.\n"
